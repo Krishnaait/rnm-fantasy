@@ -184,12 +184,14 @@ function MatchCard({ match, status }: MatchCardProps) {
           {status === "upcoming" && (
             <div className="text-sm text-muted-foreground flex items-center gap-2">
               <Calendar className="w-4 h-4" />
-              {new Date(match.sdt).toLocaleDateString("en-IN", {
-                day: "numeric",
-                month: "short",
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
+              {match.sdt && !isNaN(new Date(match.sdt).getTime())
+                ? new Date(match.sdt).toLocaleDateString("en-IN", {
+                    day: "numeric",
+                    month: "short",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })
+                : "Date TBA"}
             </div>
           )}
         </div>

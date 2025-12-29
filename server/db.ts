@@ -1,14 +1,14 @@
 import { eq, and, desc, asc, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
+import bcrypt from "bcrypt";
 import { 
-  InsertUser, users, 
+  InsertUser, users, User,
   userTeams, InsertUserTeam, UserTeam,
   teamPlayers, InsertTeamPlayer, TeamPlayer,
   contests, InsertContest, Contest,
   contestEntries, InsertContestEntry, ContestEntry,
   playerPoints, InsertPlayerPoint, PlayerPoint
 } from "../drizzle/schema";
-import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
 
@@ -25,85 +25,82 @@ export async function getDb() {
   return _db;
 }
 
-// ==================== USER QUERIES ====================
+// ==================== USER QUERIES (Custom Auth as per PDF) ====================
 
-export async function upsertUser(user: InsertUser): Promise<void> {
-  if (!user.openId) {
-    throw new Error("User openId is required for upsert");
-  }
-
+export async function createUser(name: string, email: string, password: string): Promise<number | null> {
   const db = await getDb();
-  if (!db) {
-    console.warn("[Database] Cannot upsert user: database not available");
-    return;
-  }
+  if (!db) return null;
 
   try {
-    const values: InsertUser = {
-      openId: user.openId,
-    };
-    const updateSet: Record<string, unknown> = {};
-
-    const textFields = ["name", "email", "loginMethod"] as const;
-    type TextField = (typeof textFields)[number];
-
-    const assignNullable = (field: TextField) => {
-      const value = user[field];
-      if (value === undefined) return;
-      const normalized = value ?? null;
-      values[field] = normalized;
-      updateSet[field] = normalized;
-    };
-
-    textFields.forEach(assignNullable);
-
-    if (user.lastSignedIn !== undefined) {
-      values.lastSignedIn = user.lastSignedIn;
-      updateSet.lastSignedIn = user.lastSignedIn;
-    }
-    if (user.role !== undefined) {
-      values.role = user.role;
-      updateSet.role = user.role;
-    } else if (user.openId === ENV.ownerOpenId) {
-      values.role = 'admin';
-      updateSet.role = 'admin';
-    }
-
-    if (!values.lastSignedIn) {
-      values.lastSignedIn = new Date();
-    }
-
-    if (Object.keys(updateSet).length === 0) {
-      updateSet.lastSignedIn = new Date();
-    }
-
-    await db.insert(users).values(values).onDuplicateKeyUpdate({
-      set: updateSet,
+    // Hash the password using bcrypt as specified in PDF
+    const hashedPassword = bcrypt.hashSync(password, 10);
+    
+    const result = await db.insert(users).values({
+      name,
+      email,
+      password: hashedPassword,
     });
+    
+    return result[0].insertId;
   } catch (error) {
-    console.error("[Database] Failed to upsert user:", error);
-    throw error;
+    console.error("[Database] Failed to create user:", error);
+    return null;
   }
 }
 
-export async function getUserByOpenId(openId: string) {
+export async function getUserByEmail(email: string): Promise<User | null> {
   const db = await getDb();
-  if (!db) {
-    console.warn("[Database] Cannot get user: database not available");
-    return undefined;
-  }
+  if (!db) return null;
 
-  const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
-
-  return result.length > 0 ? result[0] : undefined;
+  const result = await db.select().from(users).where(eq(users.email, email)).limit(1);
+  return result.length > 0 ? result[0] : null;
 }
 
-export async function getUserById(userId: number) {
+export async function verifyUserCredentials(email: string, password: string): Promise<User | null> {
   const db = await getDb();
-  if (!db) return undefined;
+  if (!db) return null;
+
+  const result = await db.select().from(users).where(eq(users.email, email)).limit(1);
+  
+  if (result.length > 0 && bcrypt.compareSync(password, result[0].password)) {
+    // Update last signed in
+    await db.update(users).set({ lastSignedIn: new Date() }).where(eq(users.id, result[0].id));
+    return result[0];
+  }
+  
+  return null;
+}
+
+export async function getUserById(userId: number): Promise<User | null> {
+  const db = await getDb();
+  if (!db) return null;
 
   const result = await db.select().from(users).where(eq(users.id, userId)).limit(1);
-  return result.length > 0 ? result[0] : undefined;
+  return result.length > 0 ? result[0] : null;
+}
+
+// Compatibility functions for SDK (kept for backward compatibility)
+export async function getUserByOpenId(openId: string): Promise<User | null> {
+  // For custom auth, we don't use openId, but keep this for SDK compatibility
+  return null;
+}
+
+export async function upsertUser(user: { openId?: string; name?: string | null; email?: string | null; loginMethod?: string | null; lastSignedIn?: Date; role?: "user" | "admin" }): Promise<void> {
+  // For custom auth, we don't use this, but keep for SDK compatibility
+  return;
+}
+
+export async function updateUserLastSignIn(userId: number): Promise<boolean> {
+  const db = await getDb();
+  if (!db) return false;
+
+  try {
+    await db.update(users).set({ lastSignedIn: new Date() }).where(eq(users.id, userId));
+    return true;
+  } catch (error) {
+    console.error("[Database] Failed to update last sign in:", error);
+    return false;
+  }
 }
 
 // ==================== TEAM QUERIES ====================

@@ -1,10 +1,9 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
-import { getLoginUrl } from "@/const";
 import { Link, useLocation } from "wouter";
 import { 
   Menu, X, Trophy, Users, Calendar, BarChart3, 
-  LogOut, User, Home, Zap
+  LogOut, User, Home, Zap, LogIn, UserPlus
 } from "lucide-react";
 import { useState } from "react";
 import {
@@ -111,9 +110,20 @@ export default function Header() {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <Button asChild size="sm" className="gradient-primary">
-              <a href={getLoginUrl()}>Sign In</a>
-            </Button>
+            <div className="flex items-center gap-2">
+              <Link href="/login">
+                <Button variant="ghost" size="sm" className="gap-2">
+                  <LogIn className="w-4 h-4" />
+                  Sign In
+                </Button>
+              </Link>
+              <Link href="/register">
+                <Button size="sm" className="gradient-primary gap-2">
+                  <UserPlus className="w-4 h-4" />
+                  Register
+                </Button>
+              </Link>
+            </div>
           )}
         </div>
 
@@ -179,9 +189,18 @@ export default function Header() {
             {!isAuthenticated && (
               <>
                 <div className="border-t border-border my-2" />
-                <Button asChild className="w-full gradient-primary">
-                  <a href={getLoginUrl()}>Sign In</a>
-                </Button>
+                <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
+                  <Button variant="ghost" className="w-full justify-start gap-2">
+                    <LogIn className="w-4 h-4" />
+                    Sign In
+                  </Button>
+                </Link>
+                <Link href="/register" onClick={() => setMobileMenuOpen(false)}>
+                  <Button className="w-full gradient-primary gap-2">
+                    <UserPlus className="w-4 h-4" />
+                    Register
+                  </Button>
+                </Link>
               </>
             )}
           </nav>

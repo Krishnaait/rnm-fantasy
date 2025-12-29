@@ -1,14 +1,13 @@
 import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, decimal } from "drizzle-orm/mysql-core";
 
 /**
- * Core user table backing auth flow.
+ * Core user table with email/password authentication (as per PDF guide)
  */
 export const users = mysqlTable("users", {
   id: int("id").autoincrement().primaryKey(),
-  openId: varchar("openId", { length: 64 }).notNull().unique(),
-  name: text("name"),
-  email: varchar("email", { length: 320 }),
-  loginMethod: varchar("loginMethod", { length: 64 }),
+  name: varchar("name", { length: 255 }),
+  email: varchar("email", { length: 255 }).unique().notNull(),
+  password: varchar("password", { length: 255 }).notNull(),
   role: mysqlEnum("role", ["user", "admin"]).default("user").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
@@ -28,6 +27,7 @@ export const userTeams = mysqlTable("user_teams", {
   name: varchar("name", { length: 255 }).notNull(),
   captainId: varchar("captainId", { length: 255 }).notNull(),
   viceCaptainId: varchar("viceCaptainId", { length: 255 }).notNull(),
+  totalCreditsUsed: decimal("totalCreditsUsed", { precision: 5, scale: 2 }),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });

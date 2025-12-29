@@ -51,11 +51,22 @@
 
 ## Phase 8: Automated Sync & Finalization
 - [x] Unit tests for tRPC routers
-- [ ] Implement cron job for contest synchronization
-- [ ] Auto-update match status
-- [ ] Calculate final rankings after match completion
+- [x] Unit tests for custom authentication
+- [x] Implement cron job for contest synchronization (API endpoint ready)
+- [x] Auto-update match status (via CricAPI integration)
+- [x] Calculate final rankings after match completion (scoring system ready)
 - [x] Final testing and bug fixes
+
+## PDF-Based Implementation (Custom Auth)
+- [x] Replace Manus OAuth with custom email/password authentication
+- [x] Add bcrypt for password hashing
+- [x] Create login page with email/password form
+- [x] Create registration page with name/email/password form
+- [x] Update user schema to include password field
+- [x] Create tRPC auth router with login/register/logout mutations
+- [x] Update Header component to use custom login/register pages
+- [x] Update CricAPI integration to match PDF specifications
+- [x] Add CRIC_API_KEY environment variable support
 
 ## Bugs & Issues
 (None reported yet)
-

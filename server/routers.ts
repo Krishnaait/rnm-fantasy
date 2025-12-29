@@ -11,14 +11,98 @@ import {
   getTeamById, getTeamPlayers, deleteTeam,
   createContest, getContests, getContestById, updateContestStatus,
   joinContest, getUserContestEntries, getContestEntries, getContestLeaderboard,
-  hasUserJoinedContest, updateEntryPoints
+  hasUserJoinedContest, updateEntryPoints,
+  createUser, getUserByEmail, verifyUserCredentials, getUserById
 } from "./db";
+import { TRPCError } from "@trpc/server";
+import { SignJWT } from "jose";
+import bcrypt from "bcrypt";
+
+const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || "your-secret-key");
+
+// Create JWT token for authenticated user
+async function createAuthToken(userId: number, email: string, name: string | null): Promise<string> {
+  return new SignJWT({ userId, email, name })
+    .setProtectedHeader({ alg: "HS256", typ: "JWT" })
+    .setExpirationTime("7d")
+    .sign(JWT_SECRET);
+}
 
 export const appRouter = router({
   system: systemRouter,
   
+  // Custom Auth Router (as per PDF guide - NextAuth.js style)
   auth: router({
+    // Register new user (as per PDF Step 3.2)
+    register: publicProcedure
+      .input(z.object({
+        name: z.string().min(1, "Name is required"),
+        email: z.string().email("Invalid email address"),
+        password: z.string().min(6, "Password must be at least 6 characters"),
+      }))
+      .mutation(async ({ input }) => {
+        // Check if user already exists
+        const existingUser = await getUserByEmail(input.email);
+        if (existingUser) {
+          throw new TRPCError({
+            code: "CONFLICT",
+            message: "User with this email already exists",
+          });
+        }
+
+        // Create new user with hashed password
+        const userId = await createUser(input.name, input.email, input.password);
+        if (!userId) {
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message: "Failed to create user",
+          });
+        }
+
+        return { success: true, message: "User registered successfully" };
+      }),
+
+    // Login user (as per PDF Step 3.1)
+    login: publicProcedure
+      .input(z.object({
+        email: z.string().email("Invalid email address"),
+        password: z.string().min(1, "Password is required"),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        // Verify credentials
+        const user = await verifyUserCredentials(input.email, input.password);
+        if (!user) {
+          throw new TRPCError({
+            code: "UNAUTHORIZED",
+            message: "Invalid email or password",
+          });
+        }
+
+        // Create JWT token
+        const token = await createAuthToken(user.id, user.email, user.name);
+
+        // Set cookie
+        const cookieOptions = getSessionCookieOptions(ctx.req);
+        ctx.res.cookie(COOKIE_NAME, token, {
+          ...cookieOptions,
+          maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+        });
+
+        return {
+          success: true,
+          user: {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+          },
+        };
+      }),
+
+    // Get current user
     me: publicProcedure.query(opts => opts.ctx.user),
+    
+    // Logout user
     logout: publicProcedure.mutation(({ ctx }) => {
       const cookieOptions = getSessionCookieOptions(ctx.req);
       ctx.res.clearCookie(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });

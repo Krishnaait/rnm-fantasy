@@ -257,11 +257,33 @@ class SDKServer {
   }
 
   async authenticateRequest(req: Request): Promise<User> {
-    // Regular authentication flow
+    // Custom authentication flow using JWT token
     const cookies = this.parseCookies(req.headers.cookie);
     const sessionCookie = cookies.get(COOKIE_NAME);
-    const session = await this.verifySession(sessionCookie);
+    
+    if (!sessionCookie) {
+      throw ForbiddenError("No session cookie found");
+    }
 
+    // Try custom JWT auth first
+    try {
+      const secretKey = new TextEncoder().encode(process.env.JWT_SECRET || "your-secret-key");
+      const { payload } = await jwtVerify(sessionCookie, secretKey, { algorithms: ["HS256"] });
+      
+      if (payload.userId) {
+        const user = await db.getUserById(payload.userId as number);
+        if (user) {
+          await db.updateUserLastSignIn(user.id);
+          return user;
+        }
+      }
+    } catch (customAuthError) {
+      // Custom auth failed, try Manus OAuth as fallback
+      console.log("[Auth] Custom auth failed, trying OAuth...");
+    }
+
+    // Fallback to Manus OAuth
+    const session = await this.verifySession(sessionCookie);
     if (!session) {
       throw ForbiddenError("Invalid session cookie");
     }
@@ -270,7 +292,6 @@ class SDKServer {
     const signedInAt = new Date();
     let user = await db.getUserByOpenId(sessionUserId);
 
-    // If user not in DB, sync from OAuth server automatically
     if (!user) {
       try {
         const userInfo = await this.getUserInfoWithJwt(sessionCookie ?? "");
@@ -291,11 +312,6 @@ class SDKServer {
     if (!user) {
       throw ForbiddenError("User not found");
     }
-
-    await db.upsertUser({
-      openId: user.openId,
-      lastSignedIn: signedInAt,
-    });
 
     return user;
   }
