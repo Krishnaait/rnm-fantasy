@@ -12,7 +12,8 @@ import {
   createContest, getContests, getContestById, updateContestStatus,
   joinContest, getUserContestEntries, getContestEntries, getContestLeaderboard,
   hasUserJoinedContest, updateEntryPoints,
-  createUser, getUserByEmail, verifyUserCredentials, getUserById
+  createUser, getUserByEmail, verifyUserCredentials, getUserById,
+  seedContests
 } from "./db";
 import { TRPCError } from "@trpc/server";
 import { SignJWT } from "jose";
@@ -170,6 +171,9 @@ export const appRouter = router({
           throw new Error("Captain and vice-captain must be different players");
         }
 
+        // Calculate total credits used (placeholder for now, in production fetch from player data)
+        const totalCreditsUsed = (input.players.length * 8.5).toString(); // Average 8.5 credits per player
+
         // Create the team
         const teamId = await createTeam({
           userId: ctx.user.id,
@@ -177,6 +181,7 @@ export const appRouter = router({
           name: input.name,
           captainId: input.captainId,
           viceCaptainId: input.viceCaptainId,
+          totalCreditsUsed,
         });
 
         if (!teamId) {
@@ -357,6 +362,47 @@ export const appRouter = router({
       .query(async ({ ctx, input }) => {
         return await hasUserJoinedContest(ctx.user.id, input.contestId);
       }),
+    // Seed contests for a match
+    seed: protectedProcedure
+      .input(z.object({ matchId: z.string() }))
+      .mutation(async ({ input }) => {
+        const success = await seedContests(input.matchId);
+        return { success };
+      }),
+    // Sync contests with CricAPI
+    sync: publicProcedure.mutation(async () => {
+      const matches = await getMatches();
+      const categorized = categorizeMatches(matches);
+      
+      // 1. Update status for existing contests
+      const allContests = await getContests();
+      for (const contest of allContests) {
+        let newStatus: "upcoming" | "live" | "completed" | null = null;
+        
+        if (categorized.live.some(m => m.id === contest.matchId)) {
+          newStatus = "live";
+        } else if (categorized.completed.some(m => m.id === contest.matchId)) {
+          newStatus = "completed";
+        }
+        
+        if (newStatus && newStatus !== contest.status) {
+          await updateContestStatus(contest.id, newStatus);
+        }
+      }
+      
+      // 2. Auto-seed contests for new upcoming matches
+      // Only seed for the first 5 upcoming matches to save API hits/DB space
+      const upcomingToSeed = categorized.upcoming.slice(0, 5);
+      for (const match of upcomingToSeed) {
+        await seedContests(match.id);
+      }
+      
+      return { 
+        success: true, 
+        syncedCount: allContests.length,
+        seededCount: upcomingToSeed.length 
+      };
+    }),
   }),
 
   // ==================== SCORING ====================
@@ -374,21 +420,24 @@ export const appRouter = router({
         }
 
         const players = await getTeamPlayers(input.teamId);
+        const matchInfo = await getMatchInfo(input.matchId);
         
-        // In a real implementation, you would fetch player performance data
-        // and calculate points based on runs, wickets, catches, etc.
-        // For now, we'll return a placeholder
+        // Fetch existing points from DB if available
+        const dbPoints = await getPlayerPointsByMatch(input.matchId);
         
         let totalPoints = 0;
         const playerPointsBreakdown = players.map(player => {
-          // Placeholder scoring - in production, fetch from match data
-          const basePoints = Math.random() * 100; // Replace with actual calculation
-          let multiplier = 1;
+          const dbPoint = dbPoints.find(p => p.playerId === player.playerId);
           
+          // Use DB points if available, otherwise fallback to placeholder for live matches
+          // In production, this would be calculated from real-time ball-by-ball data
+          const basePoints = dbPoint ? parseFloat(dbPoint.totalPoints || "0") : (matchInfo?.matchEnded ? 0 : Math.random() * 50);
+          
+          let multiplier = 1;
           if (player.playerId === team.captainId) {
-            multiplier = 2; // Captain gets 2x points
+            multiplier = 2;
           } else if (player.playerId === team.viceCaptainId) {
-            multiplier = 1.5; // Vice-captain gets 1.5x points
+            multiplier = 1.5;
           }
           
           const points = basePoints * multiplier;

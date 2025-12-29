@@ -206,6 +206,58 @@ export async function getContests(matchId?: string): Promise<Contest[]> {
   return await db.select().from(contests).orderBy(desc(contests.createdAt));
 }
 
+export async function getContestsByMatchId(matchId: string): Promise<Contest[]> {
+  const db = await getDb();
+  if (!db) return [];
+  return await db.select().from(contests).where(eq(contests.matchId, matchId));
+}
+
+export async function seedContests(matchId: string): Promise<boolean> {
+  const db = await getDb();
+  if (!db) return false;
+
+  try {
+    // Check if contests already exist for this match
+    const existing = await getContestsByMatchId(matchId);
+    if (existing.length > 0) return true;
+
+    const sampleContests: InsertContest[] = [
+      {
+        matchId,
+        name: "Mega Contest",
+        description: "Join the biggest contest and win big!",
+        maxEntries: 100,
+        currentEntries: 0,
+        status: "upcoming",
+      },
+      {
+        matchId,
+        name: "Head to Head",
+        description: "1 vs 1 battle. Winner takes all!",
+        maxEntries: 2,
+        currentEntries: 0,
+        status: "upcoming",
+      },
+      {
+        matchId,
+        name: "Winner Takes All",
+        description: "Top player wins the entire prize pool!",
+        maxEntries: 10,
+        currentEntries: 0,
+        status: "upcoming",
+      }
+    ];
+
+    for (const contest of sampleContests) {
+      await db.insert(contests).values(contest);
+    }
+    return true;
+  } catch (error) {
+    console.error("[Database] Failed to seed contests:", error);
+    return false;
+  }
+}
+
 export async function getContestById(contestId: number): Promise<Contest | null> {
   const db = await getDb();
   if (!db) return null;

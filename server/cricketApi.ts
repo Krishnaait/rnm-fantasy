@@ -3,7 +3,7 @@
  * Fetches match data from CricAPI for live, upcoming, and completed matches
  */
 
-const CRIC_API_KEY = process.env.CRIC_API_KEY || "";
+const CRIC_API_KEY = process.env.CRIC_API_KEY || "1a822521-d7e0-46ff-98d3-3e51020863f3";
 const BASE_URL = "https://api.cricapi.com/v1";
 
 export interface CricMatch {
@@ -83,6 +83,10 @@ export async function getMatches(): Promise<CricScoreMatch[]> {
     }
     
     const data = await res.json();
+    if (data.status !== "success") {
+      console.error("[CricketAPI] API Error:", data.info || data.reason);
+      return [];
+    }
     return data.data || [];
   } catch (error) {
     console.error("[CricketAPI] Failed to fetch matches:", error);
@@ -110,6 +114,10 @@ export async function getMatchList(): Promise<CricMatch[]> {
     }
     
     const data = await res.json();
+    if (data.status !== "success") {
+      console.error("[CricketAPI] API Error:", data.info || data.reason);
+      return [];
+    }
     return data.data || [];
   } catch (error) {
     console.error("[CricketAPI] Failed to fetch match list:", error);
@@ -137,6 +145,10 @@ export async function getMatchSquad(matchId: string): Promise<SquadTeam[]> {
     }
     
     const data = await res.json();
+    if (data.status !== "success") {
+      console.error("[CricketAPI] API Error:", data.info || data.reason);
+      return [];
+    }
     return data.data || [];
   } catch (error) {
     console.error("[CricketAPI] Failed to fetch squad:", error);
@@ -164,6 +176,10 @@ export async function getMatchInfo(matchId: string): Promise<CricMatch | null> {
     }
     
     const data = await res.json();
+    if (data.status !== "success") {
+      console.error("[CricketAPI] API Error:", data.info || data.reason);
+      return null;
+    }
     return data.data || null;
   } catch (error) {
     console.error("[CricketAPI] Failed to fetch match info:", error);
@@ -191,6 +207,10 @@ export async function getPlayerInfo(playerId: string) {
     }
     
     const data = await res.json();
+    if (data.status !== "success") {
+      console.error("[CricketAPI] API Error:", data.info || data.reason);
+      return null;
+    }
     return data.data || null;
   } catch (error) {
     console.error("[CricketAPI] Failed to fetch player info:", error);

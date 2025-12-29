@@ -129,6 +129,7 @@ export default function CreateTeam() {
       captainId,
       viceCaptainId,
       players: selectedPlayers,
+      totalCreditsUsed: (selectedPlayers.length * 8.5).toString(), // Placeholder for now
     });
   };
 

@@ -32,7 +32,7 @@ router.get("/matches/:id/squad", async (req: Request, res: Response) => {
 // POST /api/teams/create - Create a new team
 router.post("/teams/create", async (req: Request, res: Response) => {
   try {
-    const { userId, matchId, teamName, selectedPlayers, captainId, viceCaptainId } = req.body;
+    const { userId, matchId, teamName, selectedPlayers, captainId, viceCaptainId, totalCreditsUsed } = req.body;
 
     if (!userId || !matchId || !teamName || !selectedPlayers || selectedPlayers.length !== 11) {
       return res.status(400).json({ success: false, error: "Invalid team data" });
@@ -50,6 +50,7 @@ router.post("/teams/create", async (req: Request, res: Response) => {
       name: teamName,
       captainId,
       viceCaptainId,
+      totalCreditsUsed: totalCreditsUsed || "0",
     });
 
     const teamId = (teamResult as any).insertId;
