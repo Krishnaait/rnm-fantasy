@@ -420,3 +420,53 @@
 - [x] Fixed Dashboard.tsx date formatting
 - [x] Fixed Home.tsx date formatting
 - [x] All dates now display correctly (e.g., "30 Dec, 03:25 am")
+
+
+---
+
+## NEW REQUIREMENTS - Image Generation & Theme Update (Dec 30, 2025)
+
+### Image Generation for Homepage & Static Pages
+- [ ] Generate hero image for homepage (cricket/fantasy cricket theme)
+- [ ] Generate features section images (3-4 unique images)
+- [ ] Generate how-to-play guide images (step-by-step visuals)
+- [ ] Generate testimonials/user stories images
+- [ ] Generate about page images (company, team, mission)
+- [ ] Generate FAQ section images
+- [ ] Generate contact page image
+- [ ] All images must be unique (no repeats)
+- [ ] All images converted to WebP format
+
+### Theme Update - Black & Green
+- [ ] Update color palette from current to black & green theme
+- [ ] Apply green accent color (#00ff00 or similar) to buttons and highlights
+- [ ] Update background colors to dark black (#000000 or #0a0a0a)
+- [ ] Update text colors for proper contrast
+- [ ] Ensure all pages follow the new theme consistently
+- [ ] No content copy - only theme changes
+
+### Homepage Redesign with Images
+- [ ] Add hero image to homepage
+- [ ] Add features section with images
+- [ ] Add how-to-play preview with images
+- [ ] Add testimonials section with images
+- [ ] Add call-to-action sections with images
+- [ ] Ensure responsive design with images
+
+### Static Pages Enhancement
+- [ ] Add detailed original content to About page with images
+- [ ] Add detailed original content to How to Play page with step-by-step images
+- [ ] Add detailed original content to FAQ page with relevant images
+- [ ] Add detailed original content to Contact page with image
+- [ ] Add detailed original content to Terms page
+- [ ] Add detailed original content to Privacy page
+- [ ] Add detailed original content to Fair Play page
+- [ ] Add detailed original content to Responsible Gaming page
+- [ ] All buttons remain static (no dynamic changes)
+
+### Quality Assurance
+- [ ] No image repetition across pages
+- [ ] All images relevant to content
+- [ ] Theme consistency across all pages
+- [ ] Proper image sizing and optimization
+- [ ] Mobile responsive with images
