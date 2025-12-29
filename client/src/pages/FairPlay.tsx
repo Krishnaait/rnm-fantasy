@@ -1,5 +1,3 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, AlertTriangle, CheckCircle, Ban, Eye, Scale } from "lucide-react";
 
@@ -40,7 +38,6 @@ export default function FairPlay() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Header />
       
       <main className="flex-1">
         {/* Hero Section */}
@@ -243,7 +240,6 @@ export default function FairPlay() {
         </section>
       </main>
 
-      <Footer />
     </div>
   );
 }

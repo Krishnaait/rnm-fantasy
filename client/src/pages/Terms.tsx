@@ -1,11 +1,8 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function Terms() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Header />
       
       <main className="flex-1">
         {/* Hero Section */}
@@ -147,7 +144,6 @@ export default function Terms() {
         </section>
       </main>
 
-      <Footer />
     </div>
   );
 }

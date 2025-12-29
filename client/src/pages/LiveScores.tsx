@@ -1,5 +1,3 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { trpc } from "@/lib/trpc";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -31,7 +29,6 @@ export default function LiveScores() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Header />
       
       <main className="flex-1 container py-8">
         <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
@@ -160,7 +157,6 @@ export default function LiveScores() {
         </Card>
       </main>
 
-      <Footer />
     </div>
   );
 }

@@ -1,5 +1,3 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -70,7 +68,6 @@ export default function MyTeams() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Header />
       
       <main className="flex-1 container py-8">
         <div className="mb-8">
@@ -219,7 +216,6 @@ export default function MyTeams() {
         </AlertDialogContent>
       </AlertDialog>
 
-      <Footer />
     </div>
   );
 }

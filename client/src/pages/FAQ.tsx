@@ -1,194 +1,136 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { HelpCircle } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { HelpCircle, Trophy, ShieldCheck, Info, Zap } from "lucide-react";
 
 export default function FAQ() {
   const faqs = [
     {
       category: "General",
+      icon: <HelpCircle className="w-5 h-5 text-primary" />,
       questions: [
         {
           q: "What is RNM Fantasy?",
-          a: "RNM Fantasy is a free-to-play fantasy cricket platform where you can create virtual teams, join contests, and compete against other cricket enthusiasts. There are no entry fees or real money prizes – it's purely for fun and bragging rights!"
+          a: "RNM Fantasy is India's premier free-to-play fantasy cricket platform. It allows cricket fans to use their knowledge and skills to create dream teams and compete in various contests without any real money involved."
         },
         {
-          q: "Is RNM Fantasy free to play?",
-          a: "Yes, RNM Fantasy is 100% free to play. There are no entry fees, no in-app purchases, and no real money involved. All contests are free to join."
+          q: "Is it really free to play?",
+          a: "Yes, 100%! RNM Fantasy is strictly for entertainment purposes. There are no entry fees, no hidden charges, and no real money prizes. It's all about the passion for cricket and bragging rights."
         },
         {
-          q: "Do I need to pay to create a team?",
-          a: "No, creating teams is completely free. You can create as many teams as you want for any match without any cost."
-        },
-        {
-          q: "Are there any real money prizes?",
-          a: "No, RNM Fantasy does not offer any real money prizes. This is a skill-based game for entertainment purposes only. You compete for rankings and bragging rights."
-        },
+          q: "How do I get started?",
+          a: "Simply register for a free account, select an upcoming match, build your dream team of 11 players, and join any of our free contests."
+        }
       ]
     },
     {
-      category: "Team Creation",
-      questions: [
-        {
-          q: "How many players can I select in my team?",
-          a: "You must select exactly 11 players for your fantasy team, just like a real cricket team."
-        },
-        {
-          q: "What is the role of Captain and Vice-Captain?",
-          a: "The Captain earns 2x (double) the points scored by that player, while the Vice-Captain earns 1.5x the points. Choose wisely as these selections can significantly impact your total score."
-        },
-        {
-          q: "Can I edit my team after creating it?",
-          a: "You can create multiple teams for the same match. However, once a match has started, you cannot edit or create new teams for that match."
-        },
-        {
-          q: "How many teams can I create for a single match?",
-          a: "You can create multiple teams for the same match. This allows you to try different strategies and player combinations."
-        },
-      ]
-    },
-    {
-      category: "Contests",
-      questions: [
-        {
-          q: "How do I join a contest?",
-          a: "To join a contest, first create a team for the match. Then go to the contest page and select the team you want to use. Click 'Join Contest' and you're in!"
-        },
-        {
-          q: "Can I join multiple contests with the same team?",
-          a: "Yes, you can use the same team to join multiple contests for the same match."
-        },
-        {
-          q: "What happens if a contest doesn't fill up?",
-          a: "Contests will proceed regardless of how many participants join. There's no minimum requirement for a contest to start."
-        },
-        {
-          q: "How are winners determined?",
-          a: "Winners are determined based on the total points scored by their fantasy team. The player with the highest points ranks first on the leaderboard."
-        },
-      ]
-    },
-    {
-      category: "Points & Scoring",
+      category: "Gameplay & Scoring",
+      icon: <Trophy className="w-5 h-5 text-primary" />,
       questions: [
         {
           q: "How are points calculated?",
-          a: "Points are calculated based on real player performance during the match. Actions like runs scored, wickets taken, catches, and more contribute to points. Visit our 'How to Play' page for the complete points system."
+          a: "Points are awarded based on the real-life performance of the players you select in your team. This includes runs scored, wickets taken, catches, stumpings, and more. Check our 'How to Play' page for a detailed scoring breakdown."
         },
         {
-          q: "When are points updated?",
-          a: "Points are updated in real-time as the match progresses. You can track your team's performance on the live scores page."
+          q: "What is the role of Captain and Vice-Captain?",
+          a: "Your Captain earns 2x points and your Vice-Captain earns 1.5x points for their performance. Choosing them wisely is key to winning contests!"
         },
         {
-          q: "What happens if a player doesn't play?",
-          a: "If a player in your team doesn't play in the match, they will score 0 points. This is why it's important to check team news before the match."
-        },
-        {
-          q: "How does the Captain multiplier work?",
-          a: "All points earned by your Captain are multiplied by 2. For example, if your Captain scores 50 points, they will contribute 100 points to your team total."
-        },
+          q: "When are the points updated?",
+          a: "Points are updated in real-time during live matches. Our system auto-refreshes every 30 seconds to give you the most accurate standings."
+        }
       ]
     },
     {
-      category: "Account & Technical",
+      category: "Account & Security",
+      icon: <ShieldCheck className="w-5 h-5 text-primary" />,
       questions: [
         {
-          q: "How do I create an account?",
-          a: "Click on 'Sign In' and follow the authentication process. You can sign in using your existing credentials through our secure login system."
+          q: "Can I have multiple accounts?",
+          a: "To ensure fair play, we only allow one account per user. Multiple accounts may lead to disqualification from contests."
         },
         {
-          q: "Is my personal information safe?",
-          a: "Yes, we take data privacy seriously. We only collect necessary information and never share your personal data with third parties. Read our Privacy Policy for more details."
-        },
-        {
-          q: "What browsers are supported?",
-          a: "RNM Fantasy works on all modern browsers including Chrome, Firefox, Safari, and Edge. We recommend using the latest version for the best experience."
-        },
-        {
-          q: "Can I use RNM Fantasy on mobile?",
-          a: "Yes, our website is fully responsive and works great on mobile devices. You can access all features from your smartphone or tablet browser."
-        },
+          q: "What should I do if I forget my password?",
+          a: "You can use the 'Forgot Password' link on the login page to reset your password via your registered email address."
+        }
       ]
-    },
+    }
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <Header />
-      
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="py-16 gradient-hero">
-          <div className="container">
-            <div className="max-w-3xl mx-auto text-center">
-              <div className="w-16 h-16 rounded-full gradient-primary flex items-center justify-center mx-auto mb-6">
-                <HelpCircle className="w-8 h-8 text-primary-foreground" />
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <section className="py-20 bg-card/30 border-b border-border">
+        <div className="container text-center space-y-6">
+          <h1 className="text-4xl md:text-6xl font-extrabold">
+            Frequently Asked <span className="text-primary">Questions</span>
+          </h1>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Everything you need to know about RNM Fantasy. Can't find what you're 
+            looking for? Reach out to our support team.
+          </p>
+        </div>
+      </section>
+
+      <main className="container py-24">
+        <div className="max-w-4xl mx-auto space-y-12">
+          {faqs.map((category, idx) => (
+            <div key={idx} className="space-y-6">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                  {category.icon}
+                </div>
+                <h2 className="text-2xl font-bold">{category.category}</h2>
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                Frequently Asked Questions
-              </h1>
-              <p className="text-lg text-muted-foreground">
-                Find answers to common questions about RNM Fantasy
-              </p>
+              
+              <Card className="border-primary/10 bg-card/50 overflow-hidden">
+                <CardContent className="p-0">
+                  <Accordion type="single" collapsible className="w-full">
+                    {category.questions.map((faq, fIdx) => (
+                      <AccordionItem 
+                        key={fIdx} 
+                        value={`item-${idx}-${fIdx}`} 
+                        className="border-b border-border/50 last:border-0 px-6"
+                      >
+                        <AccordionTrigger className="hover:text-primary transition-colors text-left py-6 text-lg font-medium">
+                          {faq.q}
+                        </AccordionTrigger>
+                        <AccordionContent className="text-muted-foreground pb-6 text-base leading-relaxed">
+                          {faq.a}
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </CardContent>
+              </Card>
             </div>
-          </div>
-        </section>
+          ))}
 
-        {/* FAQ Section */}
-        <section className="py-16">
-          <div className="container max-w-4xl">
-            {faqs.map((category, categoryIndex) => (
-              <div key={categoryIndex} className="mb-8">
-                <h2 className="text-2xl font-bold mb-4">{category.category}</h2>
-                <Card>
-                  <CardContent className="pt-6">
-                    <Accordion type="single" collapsible className="w-full">
-                      {category.questions.map((faq, index) => (
-                        <AccordionItem key={index} value={`${categoryIndex}-${index}`}>
-                          <AccordionTrigger className="text-left">
-                            {faq.q}
-                          </AccordionTrigger>
-                          <AccordionContent className="text-muted-foreground">
-                            {faq.a}
-                          </AccordionContent>
-                        </AccordionItem>
-                      ))}
-                    </Accordion>
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Contact Section */}
-        <section className="py-16 bg-card/50">
-          <div className="container">
-            <Card className="max-w-2xl mx-auto text-center">
-              <CardContent className="py-8">
-                <h2 className="text-2xl font-bold mb-4">Still Have Questions?</h2>
-                <p className="text-muted-foreground mb-6">
-                  Can't find what you're looking for? Our support team is here to help.
-                </p>
+          {/* CTA Section */}
+          <Card className="gradient-primary border-0 overflow-hidden relative">
+            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20" />
+            <CardContent className="relative z-10 p-12 text-center space-y-6">
+              <Info className="w-16 h-16 text-primary-foreground mx-auto" />
+              <h2 className="text-3xl font-bold text-primary-foreground">Still have questions?</h2>
+              <p className="text-primary-foreground/80 text-lg max-w-xl mx-auto">
+                Our support team is here to help you 24/7 with any queries or issues.
+              </p>
+              <div className="pt-4">
                 <a 
-                  href="/contact"
-                  className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+                  href="/contact" 
+                  className="inline-flex items-center justify-center rounded-md text-lg font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-background text-foreground hover:bg-muted h-14 px-10"
                 >
                   Contact Support
                 </a>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </main>
-
-      <Footer />
     </div>
   );
 }

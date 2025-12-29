@@ -1,365 +1,263 @@
-import { useAuth } from "@/_core/hooks/useAuth";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { ArrowRight, Zap, Users, Trophy, Gamepad2, Target, Shield, Sparkles } from "lucide-react";
 import { useLocation } from "wouter";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { 
+  Trophy, 
+  Users, 
+  Zap, 
+  ArrowRight, 
+  Star, 
+  ShieldCheck, 
+  Smartphone,
+  TrendingUp,
+  CheckCircle2,
+  Sparkles
+} from "lucide-react";
+import { useAuth } from "@/_core/hooks/useAuth";
 
 export default function Home() {
-  const { user, isAuthenticated } = useAuth();
   const [, navigate] = useLocation();
+  const { user, isAuthenticated } = useAuth();
+
+  const features = [
+    {
+      title: "100% Free to Play",
+      description: "No entry fees, no real money. Just pure cricket fantasy fun for everyone.",
+      icon: <Trophy className="w-8 h-8 text-primary" />,
+      image: "/feature-contests.png"
+    },
+    {
+      title: "Real-Time Live Scores",
+      description: "Watch your fantasy team's performance with live match updates every 30 seconds.",
+      icon: <Zap className="w-8 h-8 text-primary" />,
+      image: "/feature-live-scores.png"
+    },
+    {
+      title: "Global Leaderboards",
+      description: "Compete with cricket fans across India and climb the global rankings.",
+      icon: <TrendingUp className="w-8 h-8 text-primary" />,
+      image: "/feature-leaderboard.png"
+    }
+  ];
+
+  const steps = [
+    {
+      title: "Register Free",
+      description: "Create your free account in seconds and join the community.",
+      image: "/how-to-play-step1.png"
+    },
+    {
+      title: "Select Match",
+      description: "Choose from upcoming international and domestic cricket matches.",
+      image: "/how-to-play-step2.png"
+    },
+    {
+      title: "Create Team",
+      description: "Build your dream team of 11 players and select your Captain.",
+      image: "/how-to-play-step3.png"
+    }
+  ];
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
-      {/* Hero Section with Image */}
-      <section className="relative py-20 px-4 md:px-8 border-b border-green-500/30">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <div className="inline-block px-4 py-2 rounded-full bg-green-500/10 border border-green-500/50">
-                <span className="text-green-400 text-sm font-semibold flex items-center gap-2">
-                  <Zap className="w-4 h-4" />
-                  100% Free to Play • No Real Money
-                </span>
-              </div>
-              <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-                <span className="text-white">Play Fantasy Cricket</span>
-                <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400">
-                  Win Bragging Rights
-                </span>
-              </h1>
-              <p className="text-xl text-gray-300 leading-relaxed">
-                Create your dream team, join free contests, and compete against cricket fans across India. No money involved – just pure cricket passion and skill-based competition.
-              </p>
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <section className="relative h-[80vh] flex items-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/hero-cricket-player.png" 
+            alt="Cricket Action" 
+            className="w-full h-full object-cover opacity-40"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
+        </div>
+        
+        <div className="container relative z-10">
+          <div className="max-w-2xl space-y-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium animate-pulse">
+              <Sparkles className="w-4 h-4" />
+              <span>India's Premier Free Fantasy Platform</span>
             </div>
-
-            <div className="flex flex-col sm:flex-row gap-4">
+            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight">
+              Play Cricket <br />
+              <span className="text-primary">Fantasy for Free</span>
+            </h1>
+            <p className="text-xl text-muted-foreground leading-relaxed">
+              Experience the thrill of fantasy cricket without any financial risk. 
+              Build your dream team, join contests, and compete for the top spot 
+              on the leaderboard.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
               {isAuthenticated ? (
-                <>
-                  <Button 
-                    onClick={() => navigate("/matches")}
-                    className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-black font-bold text-lg px-8 py-6 rounded-lg shadow-lg shadow-green-500/50"
-                  >
-                    Start Playing <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                  <Button 
-                    onClick={() => navigate("/dashboard")}
-                    variant="outline"
-                    className="border-green-500/50 text-green-400 hover:bg-green-500/10 font-bold text-lg px-8 py-6 rounded-lg"
-                  >
-                    Dashboard
-                  </Button>
-                </>
+                <Button 
+                  size="lg" 
+                  onClick={() => navigate("/matches")}
+                  className="gradient-primary text-lg px-8 py-6 h-auto"
+                >
+                  Go to Dashboard <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
               ) : (
                 <>
                   <Button 
+                    size="lg" 
                     onClick={() => navigate("/register")}
-                    className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-black font-bold text-lg px-8 py-6 rounded-lg shadow-lg shadow-green-500/50"
+                    className="gradient-primary text-lg px-8 py-6 h-auto"
                   >
-                    Start Playing Free <ArrowRight className="ml-2 w-5 h-5" />
+                    Join Now Free <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                   <Button 
-                    onClick={() => navigate("/login")}
+                    size="lg" 
                     variant="outline"
-                    className="border-green-500/50 text-green-400 hover:bg-green-500/10 font-bold text-lg px-8 py-6 rounded-lg"
+                    onClick={() => navigate("/how-to-play")}
+                    className="text-lg px-8 py-6 h-auto border-primary/50 hover:bg-primary/10"
                   >
-                    Sign In
+                    How to Play
                   </Button>
                 </>
               )}
             </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 pt-8 border-t border-green-500/20">
-              <div>
-                <div className="text-3xl font-bold text-green-400">142+</div>
-                <div className="text-sm text-gray-400">Live Matches</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-green-400">∞</div>
-                <div className="text-sm text-gray-400">Free Contests</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-green-400">0₹</div>
-                <div className="text-sm text-gray-400">Entry Fee</div>
-              </div>
-            </div>
           </div>
+        </div>
+      </section>
 
-          {/* Hero Image */}
-          <div className="relative h-96 md:h-full rounded-xl overflow-hidden border border-green-500/30 shadow-2xl shadow-green-500/20">
-            <img 
-              src="/hero-cricket-player.png" 
-              alt="Cricket Player in Action" 
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+      {/* Stats Section */}
+      <section className="py-12 border-y border-border bg-card/30">
+        <div className="container">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { label: "Active Users", value: "50K+" },
+              { label: "Matches Covered", value: "1000+" },
+              { label: "Free Contests", value: "5000+" },
+              { label: "User Rating", value: "4.8/5" }
+            ].map((stat, i) => (
+              <div key={i} className="text-center">
+                <div className="text-3xl font-bold text-primary mb-1">{stat.value}</div>
+                <div className="text-sm text-muted-foreground uppercase tracking-wider">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 px-4 md:px-8 border-b border-green-500/30">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400">
-                Why Choose RNM Fantasy?
-              </span>
-            </h2>
-            <p className="text-xl text-gray-300">Everything you need to play fantasy cricket like a pro</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Feature 1 */}
-            <Card className="bg-gradient-to-br from-green-500/10 to-cyan-500/10 border-green-500/30 p-6 hover:border-green-500/60 transition-all hover:shadow-lg hover:shadow-green-500/20">
-              <div className="mb-4 w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center">
-                <Users className="w-6 h-6 text-green-400" />
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-green-400">Team Creation</h3>
-              <p className="text-gray-300">Select 11 players, choose your captain (2x points) and vice-captain (1.5x points) for maximum strategy.</p>
-            </Card>
-
-            {/* Feature 2 */}
-            <Card className="bg-gradient-to-br from-green-500/10 to-cyan-500/10 border-green-500/30 p-6 hover:border-green-500/60 transition-all hover:shadow-lg hover:shadow-green-500/20">
-              <div className="mb-4 w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center">
-                <Zap className="w-6 h-6 text-cyan-400" />
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-cyan-400">Live Scores</h3>
-              <p className="text-gray-300">Real-time match updates and live scoring with auto-refresh every 30 seconds. Never miss a moment.</p>
-            </Card>
-
-            {/* Feature 3 */}
-            <Card className="bg-gradient-to-br from-green-500/10 to-cyan-500/10 border-green-500/30 p-6 hover:border-green-500/60 transition-all hover:shadow-lg hover:shadow-green-500/20">
-              <div className="mb-4 w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center">
-                <Trophy className="w-6 h-6 text-green-400" />
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-green-400">Free Contests</h3>
-              <p className="text-gray-300">Join unlimited free contests with no entry fees. Compete for bragging rights and global rankings.</p>
-            </Card>
-
-            {/* Feature 4 */}
-            <Card className="bg-gradient-to-br from-green-500/10 to-cyan-500/10 border-green-500/30 p-6 hover:border-green-500/60 transition-all hover:shadow-lg hover:shadow-green-500/20">
-              <div className="mb-4 w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center">
-                <Target className="w-6 h-6 text-cyan-400" />
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-cyan-400">Smart Scoring</h3>
-              <p className="text-gray-300">Advanced points calculation based on player performance. Captain gets 2x, Vice-Captain gets 1.5x multiplier.</p>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works Section */}
-      <section className="py-20 px-4 md:px-8 border-b border-green-500/30">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400">
-                How to Play
-              </span>
-            </h2>
-            <p className="text-xl text-gray-300">Get started in 4 simple steps</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Step 1 */}
-            <div className="relative">
-              <div className="bg-gradient-to-br from-green-500/10 to-cyan-500/10 border border-green-500/30 rounded-xl p-6">
-                <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center mb-4">
-                  <span className="text-green-400 font-bold text-lg">1</span>
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-green-400">Register</h3>
-                <p className="text-gray-300 text-sm">Create your free account with email and password. Takes less than 1 minute.</p>
-              </div>
-              {/* Connector */}
-              <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-0.5 bg-gradient-to-r from-green-500 to-transparent"></div>
-            </div>
-
-            {/* Step 2 */}
-            <div className="relative">
-              <div className="bg-gradient-to-br from-green-500/10 to-cyan-500/10 border border-green-500/30 rounded-xl p-6">
-                <div className="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center mb-4">
-                  <span className="text-cyan-400 font-bold text-lg">2</span>
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-cyan-400">Select Match</h3>
-                <p className="text-gray-300 text-sm">Browse upcoming cricket matches and choose the one you want to play.</p>
-              </div>
-              <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-0.5 bg-gradient-to-r from-cyan-500 to-transparent"></div>
-            </div>
-
-            {/* Step 3 */}
-            <div className="relative">
-              <div className="bg-gradient-to-br from-green-500/10 to-cyan-500/10 border border-green-500/30 rounded-xl p-6">
-                <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center mb-4">
-                  <span className="text-green-400 font-bold text-lg">3</span>
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-green-400">Build Team</h3>
-                <p className="text-gray-300 text-sm">Select 11 players and choose your captain & vice-captain for maximum points.</p>
-              </div>
-              <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-0.5 bg-gradient-to-r from-green-500 to-transparent"></div>
-            </div>
-
-            {/* Step 4 */}
-            <div className="relative">
-              <div className="bg-gradient-to-br from-green-500/10 to-cyan-500/10 border border-green-500/30 rounded-xl p-6">
-                <div className="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center mb-4">
-                  <span className="text-cyan-400 font-bold text-lg">4</span>
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-cyan-400">Compete</h3>
-                <p className="text-gray-300 text-sm">Join free contests and compete against other fantasy cricket fans for bragging rights.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Grid with Images */}
-      <section className="py-20 px-4 md:px-8 border-b border-green-500/30">
-        <div className="max-w-7xl mx-auto space-y-16">
-          {/* Team Creation Feature */}
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="order-2 md:order-1">
-              <img 
-                src="/feature-team-creation.png" 
-                alt="Team Creation" 
-                className="rounded-xl border border-green-500/30 shadow-2xl shadow-green-500/20"
-              />
-            </div>
-            <div className="order-1 md:order-2 space-y-6">
-              <h3 className="text-3xl md:text-4xl font-bold">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400">
-                  Smart Team Creation
-                </span>
-              </h3>
-              <p className="text-lg text-gray-300 leading-relaxed">
-                Select your 11 best players from both teams competing in the match. Our intelligent interface shows player stats, recent form, and role information to help you make the best choices. Choose your captain to earn 2x points and vice-captain for 1.5x points.
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-3 text-gray-300">
-                  <Shield className="w-5 h-5 text-green-400" />
-                  <span>Real-time player statistics</span>
-                </li>
-                <li className="flex items-center gap-3 text-gray-300">
-                  <Gamepad2 className="w-5 h-5 text-green-400" />
-                  <span>Intuitive selection interface</span>
-                </li>
-                <li className="flex items-center gap-3 text-gray-300">
-                  <Sparkles className="w-5 h-5 text-green-400" />
-                  <span>Captain & Vice-Captain multipliers</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Live Scores Feature */}
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <img 
-                src="/feature-live-scores.png" 
-                alt="Live Scores" 
-                className="rounded-xl border border-green-500/30 shadow-2xl shadow-green-500/20"
-              />
-            </div>
-            <div className="space-y-6">
-              <h3 className="text-3xl md:text-4xl font-bold">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400">
-                  Real-Time Live Scores
-                </span>
-              </h3>
-              <p className="text-lg text-gray-300 leading-relaxed">
-                Watch your fantasy team's performance with live match updates. Our platform automatically refreshes every 30 seconds to show you the latest scores, wickets, and player performances. Never miss a crucial moment of the match.
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-3 text-gray-300">
-                  <Zap className="w-5 h-5 text-cyan-400" />
-                  <span>Auto-refresh every 30 seconds</span>
-                </li>
-                <li className="flex items-center gap-3 text-gray-300">
-                  <Target className="w-5 h-5 text-cyan-400" />
-                  <span>Live player performance tracking</span>
-                </li>
-                <li className="flex items-center gap-3 text-gray-300">
-                  <Trophy className="w-5 h-5 text-cyan-400" />
-                  <span>Real-time points calculation</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Leaderboard Feature */}
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="order-2 md:order-1">
-              <img 
-                src="/feature-leaderboard.png" 
-                alt="Leaderboard" 
-                className="rounded-xl border border-green-500/30 shadow-2xl shadow-green-500/20"
-              />
-            </div>
-            <div className="order-1 md:order-2 space-y-6">
-              <h3 className="text-3xl md:text-4xl font-bold">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400">
-                  Global Leaderboards
-                </span>
-              </h3>
-              <p className="text-lg text-gray-300 leading-relaxed">
-                Compete with fantasy cricket fans across India and see where you rank globally. Our leaderboards show top performers in each contest and overall rankings. Climb the ranks and earn bragging rights in the fantasy cricket community.
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-3 text-gray-300">
-                  <Trophy className="w-5 h-5 text-green-400" />
-                  <span>Contest-specific rankings</span>
-                </li>
-                <li className="flex items-center gap-3 text-gray-300">
-                  <Users className="w-5 h-5 text-green-400" />
-                  <span>Global player rankings</span>
-                </li>
-                <li className="flex items-center gap-3 text-gray-300">
-                  <Sparkles className="w-5 h-5 text-green-400" />
-                  <span>Achievement badges</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 px-4 md:px-8">
-        <div className="max-w-4xl mx-auto text-center space-y-8 border border-green-500/30 rounded-2xl p-12 bg-gradient-to-br from-green-500/5 to-cyan-500/5">
-          <h2 className="text-4xl md:text-5xl font-bold">
-            Ready to Play Fantasy Cricket?
-          </h2>
-          <p className="text-xl text-gray-300">
-            Join thousands of cricket fans playing free fantasy cricket contests. No registration fees, no hidden charges – just pure cricket passion.
+      <section className="py-24 container">
+        <div className="text-center mb-16 space-y-4">
+          <h2 className="text-3xl md:text-5xl font-bold">Why Choose RNM Fantasy?</h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            We provide the most authentic fantasy cricket experience with zero entry fees.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            {isAuthenticated ? (
-              <Button 
-                onClick={() => navigate("/matches")}
-                className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-black font-bold text-lg px-8 py-6 rounded-lg shadow-lg shadow-green-500/50"
-              >
-                Start Playing <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-            ) : (
-              <>
-                <Button 
-                  onClick={() => navigate("/register")}
-                  className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-black font-bold text-lg px-8 py-6 rounded-lg shadow-lg shadow-green-500/50"
-                >
-                  Sign Up Free <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-                <Button 
-                  onClick={() => navigate("/how-to-play")}
-                  variant="outline"
-                  className="border-green-500/50 text-green-400 hover:bg-green-500/10 font-bold text-lg px-8 py-6 rounded-lg"
-                >
-                  Learn More
-                </Button>
-              </>
-            )}
+        </div>
+        
+        <div className="grid md:grid-cols-3 gap-8">
+          {features.map((feature, i) => (
+            <Card key={i} className="card-hover border-primary/10 bg-card/50 overflow-hidden">
+              <img src={feature.image} alt={feature.title} className="w-full h-48 object-cover opacity-80" />
+              <CardContent className="p-6 space-y-4">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-bold">{feature.title}</h3>
+                <p className="text-muted-foreground">{feature.description}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* How to Play Section */}
+      <section className="py-24 bg-card/30">
+        <div className="container">
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="text-3xl md:text-5xl font-bold">Start Playing in 3 Steps</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              It's quick, easy, and completely free to join the action.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-12">
+            {steps.map((step, i) => (
+              <div key={i} className="relative text-center space-y-6">
+                <div className="relative z-10">
+                  <img 
+                    src={step.image} 
+                    alt={step.title} 
+                    className="w-full h-64 object-contain mb-6 drop-shadow-[0_0_30px_rgba(0,255,0,0.2)]" 
+                  />
+                  <div className="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-2xl font-bold shadow-lg">
+                    {i + 1}
+                  </div>
+                </div>
+                <h3 className="text-2xl font-bold">{step.title}</h3>
+                <p className="text-muted-foreground">{step.description}</p>
+              </div>
+            ))}
           </div>
         </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-24 container">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="space-y-8">
+            <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+              What Our <span className="text-primary">Players Say</span>
+            </h2>
+            <div className="space-y-6">
+              {[
+                {
+                  name: "Rahul Sharma",
+                  role: "Cricket Enthusiast",
+                  text: "The best part about RNM Fantasy is that it's completely free. I can test my cricket knowledge without worrying about losing money."
+                },
+                {
+                  name: "Priya Patel",
+                  role: "Fantasy Pro",
+                  text: "The live score updates are incredibly fast. It makes watching the match so much more exciting when you see your fantasy points climbing!"
+                }
+              ].map((t, i) => (
+                <Card key={i} className="bg-card/50 border-primary/10">
+                  <CardContent className="p-6 space-y-4">
+                    <div className="flex gap-1">
+                      {[1, 2, 3, 4, 5].map(s => <Star key={s} className="w-4 h-4 fill-primary text-primary" />)}
+                    </div>
+                    <p className="italic text-muted-foreground">"{t.text}"</p>
+                    <div className="font-bold">{t.name} <span className="text-sm font-normal text-muted-foreground ml-2">— {t.role}</span></div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+          <div className="relative">
+            <img 
+              src="/testimonials-section.png" 
+              alt="Community" 
+              className="rounded-2xl shadow-2xl shadow-primary/20 border border-primary/10"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-24 container">
+        <Card className="gradient-primary border-0 overflow-hidden relative">
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20" />
+          <CardContent className="relative z-10 py-16 text-center space-y-8">
+            <h2 className="text-4xl md:text-6xl font-black text-primary-foreground">
+              READY TO DOMINATE?
+            </h2>
+            <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto font-medium">
+              Join India's fastest-growing free fantasy cricket community today. 
+              Show off your skills and claim your spot on the leaderboard!
+            </p>
+            <Button 
+              size="lg" 
+              variant="secondary"
+              onClick={() => navigate("/register")}
+              className="text-xl px-12 py-8 h-auto font-bold shadow-2xl hover:scale-105 transition-transform"
+            >
+              START PLAYING NOW
+            </Button>
+          </div>
+        </Card>
       </section>
     </div>
   );

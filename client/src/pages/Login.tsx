@@ -11,8 +11,6 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { Link } from "wouter";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { Loader2, Mail, Lock, LogIn } from "lucide-react";
 
 export default function Login() {
@@ -37,7 +35,6 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#0a0f1a]">
-      <Header />
       
       <main className="flex-1 flex items-center justify-center py-12 px-4">
         <Card className="w-full max-w-md bg-gray-800 border-gray-700">
@@ -122,7 +119,6 @@ export default function Login() {
         </Card>
       </main>
       
-      <Footer />
     </div>
   );
 }

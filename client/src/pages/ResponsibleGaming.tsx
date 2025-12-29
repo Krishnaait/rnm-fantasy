@@ -1,5 +1,3 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Heart, Clock, Users, AlertCircle, CheckCircle, Shield } from "lucide-react";
 
@@ -40,7 +38,6 @@ export default function ResponsibleGaming() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Header />
       
       <main className="flex-1">
         {/* Hero Section */}
@@ -226,7 +223,6 @@ export default function ResponsibleGaming() {
         </section>
       </main>
 
-      <Footer />
     </div>
   );
 }

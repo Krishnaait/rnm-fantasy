@@ -1,5 +1,3 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -27,12 +25,10 @@ export default function MatchDetail() {
   if (isLoading) {
     return (
       <div className="min-h-screen flex flex-col bg-background">
-        <Header />
         <main className="flex-1 container py-8">
           <Skeleton className="h-8 w-48 mb-4" />
           <Skeleton className="h-64 w-full" />
         </main>
-        <Footer />
       </div>
     );
   }
@@ -40,7 +36,6 @@ export default function MatchDetail() {
   if (!match) {
     return (
       <div className="min-h-screen flex flex-col bg-background">
-        <Header />
         <main className="flex-1 container py-8">
           <Card className="border-destructive">
             <CardContent className="py-12 text-center">
@@ -53,7 +48,6 @@ export default function MatchDetail() {
             </CardContent>
           </Card>
         </main>
-        <Footer />
       </div>
     );
   }
@@ -63,7 +57,6 @@ export default function MatchDetail() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Header />
       
       <main className="flex-1 container py-8">
         {/* Back Button */}
@@ -298,7 +291,6 @@ export default function MatchDetail() {
         </Tabs>
       </main>
 
-      <Footer />
     </div>
   );
 }

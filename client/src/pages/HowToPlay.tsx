@@ -1,230 +1,208 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { 
-  Users, Trophy, Crown, Star, Calendar, 
-  CheckCircle, ArrowRight, Zap 
+  CheckCircle2, 
+  ArrowRight, 
+  Trophy, 
+  Users, 
+  Zap, 
+  Crown, 
+  Star,
+  ShieldCheck,
+  Smartphone
 } from "lucide-react";
 
 export default function HowToPlay() {
   const steps = [
     {
-      number: 1,
-      title: "Select a Match",
-      description: "Browse upcoming cricket matches and choose the one you want to play. You can create teams for any upcoming match on our platform.",
-      icon: Calendar,
+      title: "1. Select a Match",
+      description: "Choose an upcoming match from the 'Matches' section. We cover all major international and domestic cricket tournaments.",
+      image: "/how-to-play-step1.png"
     },
     {
-      number: 2,
-      title: "Create Your Team",
-      description: "Select 11 players from both teams playing in the match. Use your cricket knowledge to pick the best performers.",
-      icon: Users,
+      title: "2. Create Your Team",
+      description: "Build your dream team of 11 players within the virtual budget. You must select players from both competing teams.",
+      image: "/how-to-play-step2.png"
     },
     {
-      number: 3,
-      title: "Choose Captain & Vice-Captain",
-      description: "Select your Captain (2x points) and Vice-Captain (1.5x points). These choices can make or break your team's performance.",
-      icon: Crown,
+      title: "3. Choose Captain & VC",
+      description: "Select a Captain (2x points) and a Vice-Captain (1.5x points). These choices are crucial for your final score.",
+      image: "/how-to-play-step3.png"
     },
     {
-      number: 4,
-      title: "Join Contests",
-      description: "Enter free contests to compete against other players. All contests on RNM Fantasy are 100% free to join.",
-      icon: Trophy,
-    },
-    {
-      number: 5,
-      title: "Track Live Scores",
-      description: "Watch your team's performance in real-time as the match progresses. Points are calculated automatically based on player performance.",
-      icon: Zap,
-    },
-    {
-      number: 6,
-      title: "Climb the Leaderboard",
-      description: "Compete for the top spot on the leaderboard. The better your team performs, the higher you rank!",
-      icon: Star,
-    },
+      title: "4. Join Contests",
+      description: "Enter your team into any of our free contests. You can create multiple teams for the same match to increase your chances.",
+      image: "/feature-contests.png"
+    }
   ];
 
   const pointsSystem = [
-    { category: "Batting", points: [
-      { action: "Run scored", value: "+1 point" },
-      { action: "Boundary (4)", value: "+1 bonus point" },
-      { action: "Six (6)", value: "+2 bonus points" },
-      { action: "Half-century (50)", value: "+10 bonus points" },
-      { action: "Century (100)", value: "+25 bonus points" },
-      { action: "Duck (0 runs)", value: "-5 points" },
-    ]},
-    { category: "Bowling", points: [
-      { action: "Wicket taken", value: "+25 points" },
-      { action: "Maiden over", value: "+10 points" },
-      { action: "3-wicket haul", value: "+10 bonus points" },
-      { action: "5-wicket haul", value: "+25 bonus points" },
-    ]},
-    { category: "Fielding", points: [
-      { action: "Catch taken", value: "+10 points" },
-      { action: "Stumping", value: "+15 points" },
-      { action: "Run out (direct)", value: "+15 points" },
-      { action: "Run out (indirect)", value: "+10 points" },
-    ]},
-    { category: "Multipliers", points: [
-      { action: "Captain", value: "2x all points" },
-      { action: "Vice-Captain", value: "1.5x all points" },
-    ]},
+    {
+      category: "Batting",
+      points: [
+        { action: "Run", value: "+1" },
+        { action: "Boundary Bonus", value: "+1" },
+        { action: "Six Bonus", value: "+2" },
+        { action: "Half-Century Bonus", value: "+8" },
+        { action: "Century Bonus", value: "+16" },
+        { action: "Duck (Dismissal for 0)", value: "-2" }
+      ]
+    },
+    {
+      category: "Bowling",
+      points: [
+        { action: "Wicket (Excluding Run Out)", value: "+25" },
+        { action: "3 Wicket Bonus", value: "+4" },
+        { action: "4 Wicket Bonus", value: "+8" },
+        { action: "5 Wicket Bonus", value: "+16" },
+        { action: "Maiden Over", value: "+8" }
+      ]
+    },
+    {
+      category: "Fielding",
+      points: [
+        { action: "Catch", value: "+8" },
+        { action: "Stumping", value: "+12" },
+        { action: "Run Out (Direct Hit)", value: "+12" },
+        { action: "Run Out (Involved)", value: "+6" }
+      ]
+    },
+    {
+      category: "Multipliers",
+      points: [
+        { action: "Captain", value: "2x Points" },
+        { action: "Vice-Captain", value: "1.5x Points" }
+      ]
+    }
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <Header />
-      
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="py-16 gradient-hero">
-          <div className="container">
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                How to Play
-              </h1>
-              <p className="text-lg text-muted-foreground">
-                Learn how to create winning fantasy cricket teams and compete for glory
-              </p>
-            </div>
-          </div>
-        </section>
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <section className="py-20 bg-card/30 border-b border-border">
+        <div className="container text-center space-y-6">
+          <h1 className="text-4xl md:text-6xl font-extrabold">
+            How to <span className="text-primary">Play</span>
+          </h1>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Master the art of fantasy cricket. Follow these simple steps to start 
+            your journey and dominate the leaderboards.
+          </p>
+        </div>
+      </section>
 
-        {/* Steps Section */}
-        <section className="py-16">
-          <div className="container">
-            <h2 className="text-3xl font-bold mb-12 text-center">Getting Started</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {steps.map((step) => (
-                <Card key={step.number} className="card-hover relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-20 h-20 bg-primary/10 rounded-bl-full" />
-                  <CardHeader>
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full gradient-primary flex items-center justify-center text-xl font-bold text-primary-foreground">
-                        {step.number}
-                      </div>
-                      <CardTitle className="text-lg">{step.title}</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">{step.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Points System Section */}
-        <section className="py-16 bg-card/50">
-          <div className="container">
-            <h2 className="text-3xl font-bold mb-4 text-center">Points System</h2>
-            <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-              Points are awarded based on real player performance during the match. 
-              Here's how the scoring works:
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {pointsSystem.map((category) => (
-                <Card key={category.category}>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      {category.category === "Multipliers" ? (
-                        <Crown className="w-5 h-5 text-secondary" />
-                      ) : (
-                        <CheckCircle className="w-5 h-5 text-primary" />
-                      )}
-                      {category.category}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-2">
-                      {category.points.map((point, index) => (
-                        <div 
-                          key={index}
-                          className="flex items-center justify-between py-2 border-b border-border last:border-0"
-                        >
-                          <span className="text-muted-foreground">{point.action}</span>
-                          <span className={`font-medium ${
-                            point.value.includes("-") ? "text-destructive" : "text-primary"
-                          }`}>
-                            {point.value}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Tips Section */}
-        <section className="py-16">
-          <div className="container">
-            <h2 className="text-3xl font-bold mb-8 text-center">Pro Tips</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <Card className="bg-primary/5 border-primary/20">
-                <CardContent className="pt-6">
-                  <h3 className="font-semibold mb-2">Research Player Form</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Check recent performances, pitch conditions, and head-to-head records 
-                    before selecting your team.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="bg-primary/5 border-primary/20">
-                <CardContent className="pt-6">
-                  <h3 className="font-semibold mb-2">Captain Wisely</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Your captain gets 2x points. Choose a consistent performer who's 
-                    likely to have a big impact on the match.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="bg-primary/5 border-primary/20">
-                <CardContent className="pt-6">
-                  <h3 className="font-semibold mb-2">Balance Your Team</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Include a mix of batsmen, bowlers, all-rounders, and wicket-keepers 
-                    to maximize point-scoring opportunities.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-16 bg-card/50">
-          <div className="container">
-            <Card className="gradient-primary border-0">
-              <CardContent className="py-12 text-center">
-                <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-4">
-                  Ready to Start Playing?
-                </h2>
-                <p className="text-primary-foreground/80 mb-6 max-w-xl mx-auto">
-                  Put your cricket knowledge to the test. Create your first team and 
-                  join free contests today!
+      {/* Steps Section */}
+      <section className="py-24 container">
+        <div className="space-y-24">
+          {steps.map((step, i) => (
+            <div key={i} className={`flex flex-col ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-16 items-center`}>
+              <div className="flex-1 space-y-6">
+                <h2 className="text-3xl md:text-4xl font-bold">{step.title}</h2>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {step.description}
                 </p>
-                <Button asChild size="lg" variant="secondary" className="text-lg px-8">
-                  <Link href="/matches">
-                    Browse Matches
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-      </main>
+                <div className="flex items-center gap-4 text-primary font-medium">
+                  <CheckCircle2 className="w-6 h-6" />
+                  <span>Pro Tip: Research player form before selecting.</span>
+                </div>
+              </div>
+              <div className="flex-1">
+                <img 
+                  src={step.image} 
+                  alt={step.title} 
+                  className="rounded-2xl shadow-2xl border border-primary/10 w-full h-auto object-cover"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
-      <Footer />
+      {/* Points System Section */}
+      <section className="py-24 bg-card/30">
+        <div className="container">
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="text-3xl md:text-5xl font-bold">Points System</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Understand how your players earn points based on their real-match performance.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {pointsSystem.map((cat, i) => (
+              <Card key={i} className="border-primary/10 bg-card/50">
+                <CardHeader className="border-b border-border/50">
+                  <CardTitle className="text-xl flex items-center gap-2">
+                    {cat.category === "Multipliers" ? <Crown className="w-5 h-5 text-primary" /> : <Zap className="w-5 h-5 text-primary" />}
+                    {cat.category}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-6">
+                  <ul className="space-y-4">
+                    {cat.points.map((p, pi) => (
+                      <li key={pi} className="flex justify-between items-center text-sm">
+                        <span className="text-muted-foreground">{p.action}</span>
+                        <span className="font-bold text-primary">{p.value}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Fair Play Section */}
+      <section className="py-24 container">
+        <Card className="bg-primary/5 border-primary/20">
+          <CardContent className="p-12">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="space-y-6">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                  <ShieldCheck className="w-8 h-8 text-primary" />
+                </div>
+                <h2 className="text-3xl font-bold">Fair Play Policy</h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  We maintain the highest standards of integrity. Our automated systems 
+                  detect and prevent any form of collusion or multiple account usage. 
+                  Every player has an equal chance to win based on their skill.
+                </p>
+                <Button asChild variant="outline">
+                  <Link href="/fair-play">Read Full Policy</Link>
+                </Button>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  "Verified Players",
+                  "Secure Platform",
+                  "Transparent Scoring",
+                  "24/7 Monitoring"
+                ].map((item, i) => (
+                  <div key={i} className="p-4 rounded-lg bg-background border border-primary/10 flex items-center gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary" />
+                    <span className="font-medium text-sm">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-24 container text-center space-y-8">
+        <h2 className="text-3xl md:text-5xl font-bold">Ready to Build Your Team?</h2>
+        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          The next big match is just around the corner. Don't miss out on the action!
+        </p>
+        <Button asChild size="lg" className="gradient-primary text-lg px-12 py-8 h-auto">
+          <Link href="/matches">
+            Browse Upcoming Matches <ArrowRight className="ml-2 w-5 h-5" />
+          </Link>
+        </Button>
+      </section>
     </div>
   );
 }

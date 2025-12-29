@@ -1,234 +1,170 @@
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { useLocation } from "wouter";
-import { Trophy, Users, Zap, Target, Heart, Globe } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { 
+  Trophy, 
+  Users, 
+  Target, 
+  ShieldCheck, 
+  Globe, 
+  Heart,
+  Sparkles,
+  History,
+  Award
+} from "lucide-react";
 
 export default function About() {
-  const [, navigate] = useLocation();
-
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Header */}
-      <section className="py-16 px-4 md:px-8 border-b border-green-500/30">
-        <div className="max-w-4xl mx-auto text-center space-y-6">
-          <h1 className="text-5xl md:text-6xl font-bold">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400">
-              About RNM Fantasy
-            </span>
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <section className="py-20 bg-card/30 border-b border-border">
+        <div className="container text-center space-y-6">
+          <h1 className="text-4xl md:text-6xl font-extrabold">
+            About <span className="text-primary">RNM Fantasy</span>
           </h1>
-          <p className="text-xl text-gray-300">
-            India's Premier Free-to-Play Fantasy Cricket Platform
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            We are on a mission to democratize fantasy cricket in India by providing 
+            a 100% free, skill-based platform for every cricket fan.
           </p>
         </div>
       </section>
 
-      {/* Company Overview */}
-      <section className="py-20 px-4 md:px-8 border-b border-green-500/30">
-        <div className="max-w-4xl mx-auto space-y-8">
-          <div className="bg-gradient-to-br from-green-500/10 to-cyan-500/10 border border-green-500/30 rounded-xl p-8 space-y-6">
-            <h2 className="text-3xl font-bold text-green-400">Our Mission</h2>
-            <p className="text-lg text-gray-300 leading-relaxed">
-              At RNM Fantasy, we believe that fantasy cricket should be accessible to everyone. Our mission is to provide a completely free, fair, and engaging platform where cricket enthusiasts can showcase their knowledge, strategy, and passion for the game. We're dedicated to creating a community where players compete purely for bragging rights, skill-based rankings, and the joy of the game.
-            </p>
-          </div>
-
-          <div className="bg-gradient-to-br from-cyan-500/10 to-green-500/10 border border-cyan-500/30 rounded-xl p-8 space-y-6">
-            <h2 className="text-3xl font-bold text-cyan-400">Our Vision</h2>
-            <p className="text-lg text-gray-300 leading-relaxed">
-              We envision a world where fantasy cricket is a beloved pastime for millions of Indians. By eliminating financial barriers and focusing on pure skill and strategy, we're building a platform that celebrates cricket knowledge and competitive spirit. Our vision extends to creating a global community of fantasy cricket enthusiasts who share their passion for the sport.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Company Details */}
-      <section className="py-20 px-4 md:px-8 border-b border-green-500/30">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400">
-              Company Information
-            </span>
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="bg-gradient-to-br from-green-500/10 to-cyan-500/10 border-green-500/30 p-8">
-              <h3 className="text-xl font-bold text-green-400 mb-4">Legal Details</h3>
-              <div className="space-y-4 text-gray-300">
-                <div>
-                  <span className="text-green-400 font-semibold">Company Name:</span>
-                  <p>RNM Parking and Security Solutions Private Limited</p>
-                </div>
-                <div>
-                  <span className="text-green-400 font-semibold">CIN:</span>
-                  <p>U93000DL2019PTC357485</p>
-                </div>
-                <div>
-                  <span className="text-green-400 font-semibold">GST Number:</span>
-                  <p>07AAJCR9113K1Z1</p>
-                </div>
-                <div>
-                  <span className="text-green-400 font-semibold">PAN:</span>
-                  <p>AAJCR9113K</p>
-                </div>
-              </div>
-            </Card>
-
-            <Card className="bg-gradient-to-br from-cyan-500/10 to-green-500/10 border-cyan-500/30 p-8">
-              <h3 className="text-xl font-bold text-cyan-400 mb-4">Registered Address</h3>
-              <div className="space-y-4 text-gray-300">
-                <p className="leading-relaxed">
-                  S/O. Kalu Lal Meena<br />
-                  Jhuggi No. RC-82-A<br />
-                  J.J. Bandu Camp Sec-B<br />
-                  Pkt- 5 and 6<br />
-                  Vasant Kunj<br />
-                  New Delhi, South Delhi<br />
-                  Delhi, 110070<br />
-                  India
-                </p>
-              </div>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Core Values */}
-      <section className="py-20 px-4 md:px-8 border-b border-green-500/30">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400">
-              Our Core Values
-            </span>
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {/* Value 1 */}
-            <Card className="bg-gradient-to-br from-green-500/10 to-cyan-500/10 border-green-500/30 p-6">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
-                  <Trophy className="w-6 h-6 text-green-400" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-green-400 mb-2">Fair Play</h3>
-                  <p className="text-gray-300">We maintain the highest standards of fairness and integrity. Every player has equal opportunities, and all contests are transparent and auditable.</p>
-                </div>
-              </div>
-            </Card>
-
-            {/* Value 2 */}
-            <Card className="bg-gradient-to-br from-cyan-500/10 to-green-500/10 border-cyan-500/30 p-6">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center flex-shrink-0">
-                  <Heart className="w-6 h-6 text-cyan-400" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-cyan-400 mb-2">Passion for Cricket</h3>
-                  <p className="text-gray-300">We're cricket enthusiasts ourselves. Our platform is built by fans, for fans, with a deep understanding of what makes fantasy cricket exciting.</p>
-                </div>
-              </div>
-            </Card>
-
-            {/* Value 3 */}
-            <Card className="bg-gradient-to-br from-green-500/10 to-cyan-500/10 border-green-500/30 p-6">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
-                  <Users className="w-6 h-6 text-green-400" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-green-400 mb-2">Community First</h3>
-                  <p className="text-gray-300">We prioritize our community's needs and feedback. Your suggestions shape our platform's evolution and features.</p>
-                </div>
-              </div>
-            </Card>
-
-            {/* Value 4 */}
-            <Card className="bg-gradient-to-br from-cyan-500/10 to-green-500/10 border-cyan-500/30 p-6">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center flex-shrink-0">
-                  <Zap className="w-6 h-6 text-cyan-400" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-cyan-400 mb-2">Innovation</h3>
-                  <p className="text-gray-300">We continuously innovate to bring new features, better scoring algorithms, and enhanced user experiences to our platform.</p>
-                </div>
-              </div>
-            </Card>
-
-            {/* Value 5 */}
-            <Card className="bg-gradient-to-br from-green-500/10 to-cyan-500/10 border-green-500/30 p-6">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
-                  <Globe className="w-6 h-6 text-green-400" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-green-400 mb-2">Accessibility</h3>
-                  <p className="text-gray-300">We believe fantasy cricket should be free and accessible to everyone. No hidden charges, no premium features – just pure cricket fun.</p>
-                </div>
-              </div>
-            </Card>
-
-            {/* Value 6 */}
-            <Card className="bg-gradient-to-br from-cyan-500/10 to-green-500/10 border-cyan-500/30 p-6">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center flex-shrink-0">
-                  <Target className="w-6 h-6 text-cyan-400" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-cyan-400 mb-2">Transparency</h3>
-                  <p className="text-gray-300">All scoring algorithms, contest rules, and leaderboard calculations are transparent and clearly documented for player trust.</p>
-                </div>
-              </div>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us */}
-      <section className="py-20 px-4 md:px-8 border-b border-green-500/30">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400">
-              Why Choose RNM Fantasy?
-            </span>
-          </h2>
-
+      {/* Our Story */}
+      <section className="py-24 container">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-6">
-            <div className="bg-gradient-to-r from-green-500/10 to-cyan-500/10 border border-green-500/30 rounded-xl p-8">
-              <h3 className="text-2xl font-bold text-green-400 mb-3">100% Free to Play</h3>
-              <p className="text-gray-300 text-lg">No entry fees, no registration charges, no hidden costs. Play as many contests as you want without spending a single rupee. Fantasy cricket should be fun, not expensive.</p>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium">
+              <History className="w-4 h-4" />
+              <span>Our Journey</span>
             </div>
-
-            <div className="bg-gradient-to-r from-cyan-500/10 to-green-500/10 border border-cyan-500/30 rounded-xl p-8">
-              <h3 className="text-2xl font-bold text-cyan-400 mb-3">Advanced Scoring Algorithm</h3>
-              <p className="text-gray-300 text-lg">Our sophisticated scoring system rewards both strategy and player performance. Captain gets 2x points, Vice-Captain gets 1.5x points, ensuring strategic team selection matters.</p>
-            </div>
-
-            <div className="bg-gradient-to-r from-green-500/10 to-cyan-500/10 border border-green-500/30 rounded-xl p-8">
-              <h3 className="text-2xl font-bold text-green-400 mb-3">Real-Time Live Scores</h3>
-              <p className="text-gray-300 text-lg">Watch your fantasy team's performance with live match updates. Our auto-refresh feature ensures you never miss any action, with updates every 30 seconds.</p>
-            </div>
-
-            <div className="bg-gradient-to-r from-cyan-500/10 to-green-500/10 border border-cyan-500/30 rounded-xl p-8">
-              <h3 className="text-2xl font-bold text-cyan-400 mb-3">Global Community</h3>
-              <p className="text-gray-300 text-lg">Compete with thousands of cricket fans across India. Our global leaderboards and rankings celebrate the best fantasy cricket strategists in the community.</p>
-            </div>
+            <h2 className="text-3xl md:text-4xl font-bold">Born from Passion for Cricket</h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              RNM Fantasy was founded by a group of cricket enthusiasts who believed that 
+              fantasy sports should be about skill and passion, not just money. We saw 
+              millions of fans being excluded from the fantasy sports revolution due to 
+              high entry fees and financial risks.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              In 2025, we launched RNM Fantasy with a simple promise: 100% Free to Play, 
+              Forever. Today, we are one of India's fastest-growing free fantasy platforms, 
+              connecting thousands of fans through the sport they love.
+            </p>
+          </div>
+          <div className="relative">
+            <img 
+              src="/hero-cricket-player.png" 
+              alt="Cricket Passion" 
+              className="rounded-2xl shadow-2xl opacity-80 border border-primary/10"
+            />
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4 md:px-8">
-        <div className="max-w-4xl mx-auto text-center space-y-8 border border-green-500/30 rounded-2xl p-12 bg-gradient-to-br from-green-500/5 to-cyan-500/5">
-          <h2 className="text-4xl font-bold">Join the RNM Fantasy Community</h2>
-          <p className="text-xl text-gray-300">
-            Be part of India's fastest-growing free fantasy cricket platform. Start playing today and compete with cricket fans worldwide.
-          </p>
-          <Button 
-            onClick={() => navigate("/register")}
-            className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-black font-bold text-lg px-8 py-6 rounded-lg shadow-lg shadow-green-500/50"
-          >
-            Start Playing Free
-          </Button>
+      {/* Our Values */}
+      <section className="py-24 bg-card/30">
+        <div className="container">
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="text-3xl md:text-5xl font-bold">Our Core Values</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              These principles guide everything we do at RNM Fantasy.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Inclusivity",
+                description: "Fantasy cricket for everyone, regardless of their financial background.",
+                icon: <Globe className="w-8 h-8 text-primary" />
+              },
+              {
+                title: "Integrity",
+                description: "Fair play is at our core. We ensure a level playing field for all users.",
+                icon: <ShieldCheck className="w-8 h-8 text-primary" />
+              },
+              {
+                title: "Innovation",
+                description: "Constantly improving our platform to provide the best user experience.",
+                icon: <Sparkles className="w-8 h-8 text-primary" />
+              }
+            ].map((value, i) => (
+              <Card key={i} className="border-primary/10 bg-card/50">
+                <CardContent className="p-8 text-center space-y-4">
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
+                    {value.icon}
+                  </div>
+                  <h3 className="text-xl font-bold">{value.title}</h3>
+                  <p className="text-muted-foreground">{value.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why We Are Different */}
+      <section className="py-24 container">
+        <div className="text-center mb-16 space-y-4">
+          <h2 className="text-3xl md:text-5xl font-bold">Why We Are Different</h2>
+        </div>
+        
+        <div className="grid md:grid-cols-2 gap-8">
+          {[
+            {
+              title: "No Real Money Involved",
+              description: "Unlike other platforms, we never ask for your money. Play freely and enjoy the game.",
+              icon: <Heart className="w-6 h-6 text-primary" />
+            },
+            {
+              title: "Skill-Based Competition",
+              description: "Our scoring system is designed to reward deep cricket knowledge and strategic thinking.",
+              icon: <Target className="w-6 h-6 text-primary" />
+            },
+            {
+              title: "Real-Time Engagement",
+              description: "Experience the match live with our lightning-fast score updates and point calculations.",
+              icon: <Zap className="w-6 h-6 text-primary" />
+            },
+            {
+              title: "Community Focused",
+              description: "Join a growing community of cricket fans who share your passion for the game.",
+              icon: <Users className="w-6 h-6 text-primary" />
+            }
+          ].map((item, i) => (
+            <div key={i} className="flex gap-6 p-6 rounded-xl border border-primary/10 bg-card/50">
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                {item.icon}
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-xl font-bold">{item.title}</h3>
+                <p className="text-muted-foreground">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Company Info */}
+      <section className="py-24 bg-primary/5">
+        <div className="container max-w-4xl">
+          <Card className="border-primary/20">
+            <CardContent className="p-12 text-center space-y-6">
+              <Award className="w-16 h-16 text-primary mx-auto" />
+              <h2 className="text-3xl font-bold">RNM PARKING AND SECURITY SOLUTIONS PRIVATE LIMITED</h2>
+              <p className="text-muted-foreground">
+                RNM Fantasy is a flagship product of RNM Parking and Security Solutions Private Limited, 
+                a company dedicated to creating innovative digital solutions for the Indian market.
+              </p>
+              <div className="pt-6 border-t border-border grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <span className="text-muted-foreground block">CIN</span>
+                  <span className="font-bold">U93000DL2019PTC357485</span>
+                </div>
+                <div>
+                  <span className="text-muted-foreground block">Headquarters</span>
+                  <span className="font-bold">Vasant Kunj, New Delhi</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
     </div>
