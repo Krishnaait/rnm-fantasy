@@ -470,3 +470,49 @@
 - [ ] Theme consistency across all pages
 - [ ] Proper image sizing and optimization
 - [ ] Mobile responsive with images
+
+
+---
+
+## PHASE 2 - NEW FEATURES & ENHANCEMENTS (User Requested - Dec 30, 2025)
+
+### Global Components - Header & Footer
+- [ ] Make Header component global (appears on all pages)
+- [ ] Make Footer component global (appears on all pages)
+- [ ] Ensure consistent styling across all pages
+- [ ] Verify Header/Footer visibility on all routes
+
+### Remaining Static Pages (Detailed Content & Images)
+- [ ] How to Play page - complete with step-by-step guide and images
+- [ ] FAQ page - comprehensive Q&A with relevant images
+- [ ] Terms & Conditions page - detailed legal terms
+- [ ] Privacy Policy page - complete privacy information
+- [ ] Fair Play Policy page - anti-cheating and integrity rules
+- [ ] Responsible Gaming page - responsible gaming guidelines
+- [ ] Contact Us page - contact form and support information
+
+### User Profile Feature
+- [ ] Create user profile page (/profile)
+- [ ] Display user statistics (teams created, contests joined, etc.)
+- [ ] Show best rankings and achievements
+- [ ] Add achievement badges system
+- [ ] Display user's performance metrics
+- [ ] Show recent activity/history
+
+### Contest Management Features
+- [ ] Add contest type system to database schema
+- [ ] Implement Head-to-Head contest type (1v1 or small group)
+- [ ] Implement Mega Contest type (large group with leaderboard)
+- [ ] Create contest creation interface
+- [ ] Add contest management dashboard for admins
+- [ ] Implement contest joining logic for different types
+- [ ] Add contest-specific leaderboards for each type
+- [ ] Display contest type information to users
+
+### Testing & Deployment
+- [ ] Test all new pages and features
+- [ ] Verify Header & Footer appear on all pages
+- [ ] Test user profile functionality
+- [ ] Test contest management features
+- [ ] Verify contest types work correctly
+- [ ] Save checkpoint with all new features
