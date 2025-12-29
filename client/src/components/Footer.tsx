@@ -31,13 +31,7 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-lg gradient-primary flex items-center justify-center">
-                <Trophy className="w-6 h-6 text-primary-foreground" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xl font-bold text-foreground">RNM</span>
-                <span className="text-xs text-muted-foreground -mt-1">Fantasy</span>
-              </div>
+              <img src="/rnm-logo.png" alt="RNM Fantasy" className="h-12 w-auto" />
             </Link>
             <p className="text-sm text-muted-foreground">
               India's premier free-to-play fantasy cricket platform. 
@@ -107,8 +101,17 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Legal Disclaimer */}
+        <div className="border-t border-border mt-8 pt-8 mb-6">
+          <div className="bg-muted/30 rounded-lg p-4 mb-6">
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              <strong>Legal Disclaimer:</strong> RNM Fantasy is a free-to-play fantasy sports platform. This platform is for entertainment purposes only and does not involve real money, gambling, or any form of wagering. Users participate in fantasy cricket contests based on skill and knowledge of the sport. All contests are completely free to join with no entry fees or monetary prizes. By using this platform, you agree to our Terms of Service, Privacy Policy, and Fair Play Policy. Please read our Responsible Gaming guidelines for more information.
+            </p>
+          </div>
+        </div>
+
         {/* Bottom Bar */}
-        <div className="border-t border-border mt-8 pt-8">
+        <div className="border-t border-border pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-sm text-muted-foreground text-center md:text-left">
               <p>© {currentYear} RNM PARKING AND SECURITY SOLUTIONS PRIVATE LIMITED</p>

@@ -37,15 +37,7 @@ export default function Header() {
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-lg gradient-primary flex items-center justify-center">
-              <Trophy className="w-6 h-6 text-primary-foreground" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-bold text-foreground">RNM</span>
-              <span className="text-xs text-muted-foreground -mt-1">Fantasy</span>
-            </div>
-          </div>
+          <img src="/rnm-logo.png" alt="RNM Fantasy" className="h-12 w-auto" />
         </Link>
 
         {/* Desktop Navigation */}
