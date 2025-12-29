@@ -6,6 +6,8 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
+import ScrollToTopOnNavigation from "./components/ScrollToTopOnNavigation";
 
 // Pages
 import Home from "./pages/Home";
@@ -32,6 +34,7 @@ import Register from "./pages/Register";
 function Router() {
   return (
     <div className="flex flex-col min-h-screen">
+      <ScrollToTopOnNavigation />
       <Header />
       <main className="flex-1">
         <Switch>
@@ -67,6 +70,7 @@ function Router() {
         </Switch>
       </main>
       <Footer />
+      <ScrollToTop />
     </div>
   );
 }

@@ -8,7 +8,8 @@ import {
   Heart,
   Sparkles,
   History,
-  Award
+  Award,
+  Zap
 } from "lucide-react";
 
 export default function About() {
