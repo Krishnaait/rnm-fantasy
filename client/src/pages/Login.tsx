@@ -17,19 +17,34 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [, setLocation] = useLocation();
+  const utils = trpc.useUtils();
 
   const loginMutation = trpc.auth.login.useMutation({
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
       toast.success("Logged in successfully!");
-      setLocation("/dashboard");
+      
+      // Invalidate and refetch the auth.me query to ensure fresh data
+      await utils.auth.me.invalidate();
+      
+      // Small delay to ensure cookie is set before redirect
+      setTimeout(() => {
+        setLocation("/dashboard");
+      }, 100);
     },
     onError: (error) => {
+      console.error("Login error:", error);
       toast.error(error.message || "Invalid email or password");
     },
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!email || !password) {
+      toast.error("Please enter both email and password");
+      return;
+    }
+
     loginMutation.mutate({ email, password });
   };
 
@@ -62,6 +77,7 @@ export default function Login() {
                     placeholder="Enter your email"
                     className="pl-10 bg-gray-700 border-gray-600 text-white placeholder:text-gray-500"
                     required
+                    disabled={loginMutation.isPending}
                   />
                 </div>
               </div>
@@ -78,6 +94,7 @@ export default function Login() {
                     placeholder="Enter your password"
                     className="pl-10 bg-gray-700 border-gray-600 text-white placeholder:text-gray-500"
                     required
+                    disabled={loginMutation.isPending}
                   />
                 </div>
               </div>
