@@ -91,14 +91,32 @@ export default function MatchDetail() {
                 <CardTitle className="text-2xl">{match.series}</CardTitle>
                 <CardDescription className="flex items-center gap-2 mt-2">
                   <Calendar className="w-4 h-4" />
-                  {new Date(match.sdt).toLocaleDateString("en-IN", {
-                    weekday: "long",
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
+                  {(() => {
+                    const date = new Date(match.dateTimeGMT);
+                    if (isNaN(date.getTime())) {
+                      // Try parsing as timestamp
+                      const timestamp = parseInt(match.dateTimeGMT);
+                      if (!isNaN(timestamp)) {
+                        return new Date(timestamp).toLocaleDateString("en-IN", {
+                          weekday: "long",
+                          day: "numeric",
+                          month: "long",
+                          year: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        });
+                      }
+                      return "Date TBD";
+                    }
+                    return date.toLocaleDateString("en-IN", {
+                      weekday: "long",
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    });
+                  })()}
                 </CardDescription>
               </div>
               

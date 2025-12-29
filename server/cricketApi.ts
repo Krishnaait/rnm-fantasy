@@ -43,9 +43,10 @@ export interface CricScoreMatch {
   t1s?: string;
   t2s?: string;
   ms: "live" | "fixture" | "result";
-  sdt: string;
+  dateTimeGMT: string;
   series: string;
   matchType: string;
+  status?: string;
 }
 
 export interface SquadPlayer {
@@ -204,10 +205,10 @@ export function categorizeMatches(matches: CricScoreMatch[]) {
   const live = matches.filter((m) => m.ms === "live");
   const upcoming = matches
     .filter((m) => m.ms === "fixture")
-    .sort((a, b) => new Date(a.sdt).getTime() - new Date(b.sdt).getTime());
+    .sort((a, b) => new Date(a.dateTimeGMT).getTime() - new Date(b.dateTimeGMT).getTime());
   const completed = matches
     .filter((m) => m.ms === "result")
-    .sort((a, b) => new Date(b.sdt).getTime() - new Date(a.sdt).getTime());
+    .sort((a, b) => new Date(b.dateTimeGMT).getTime() - new Date(a.dateTimeGMT).getTime());
 
   return { live, upcoming, completed };
 }

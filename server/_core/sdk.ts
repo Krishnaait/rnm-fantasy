@@ -257,7 +257,7 @@ class SDKServer {
   }
 
   async authenticateRequest(req: Request): Promise<User> {
-    // Custom authentication flow using JWT token
+    // Custom authentication flow using JWT token (NO Manus OAuth)
     const cookies = this.parseCookies(req.headers.cookie);
     const sessionCookie = cookies.get(COOKIE_NAME);
     
@@ -265,7 +265,7 @@ class SDKServer {
       throw ForbiddenError("No session cookie found");
     }
 
-    // Try custom JWT auth first
+    // Use only custom JWT auth
     try {
       const secretKey = new TextEncoder().encode(process.env.JWT_SECRET || "your-secret-key");
       const { payload } = await jwtVerify(sessionCookie, secretKey, { algorithms: ["HS256"] });
@@ -277,43 +277,11 @@ class SDKServer {
           return user;
         }
       }
-    } catch (customAuthError) {
-      // Custom auth failed, try Manus OAuth as fallback
-      console.log("[Auth] Custom auth failed, trying OAuth...");
-    }
-
-    // Fallback to Manus OAuth
-    const session = await this.verifySession(sessionCookie);
-    if (!session) {
-      throw ForbiddenError("Invalid session cookie");
-    }
-
-    const sessionUserId = session.openId;
-    const signedInAt = new Date();
-    let user = await db.getUserByOpenId(sessionUserId);
-
-    if (!user) {
-      try {
-        const userInfo = await this.getUserInfoWithJwt(sessionCookie ?? "");
-        await db.upsertUser({
-          openId: userInfo.openId,
-          name: userInfo.name || null,
-          email: userInfo.email ?? null,
-          loginMethod: userInfo.loginMethod ?? userInfo.platform ?? null,
-          lastSignedIn: signedInAt,
-        });
-        user = await db.getUserByOpenId(userInfo.openId);
-      } catch (error) {
-        console.error("[Auth] Failed to sync user from OAuth:", error);
-        throw ForbiddenError("Failed to sync user info");
-      }
-    }
-
-    if (!user) {
       throw ForbiddenError("User not found");
+    } catch (error) {
+      console.log("[Auth] JWT verification failed:", error);
+      throw ForbiddenError("Invalid session");
     }
-
-    return user;
   }
 }
 

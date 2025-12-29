@@ -220,12 +220,14 @@ export default function Dashboard() {
                     <div className="font-medium mb-2">{match.t1} vs {match.t2}</div>
                     <div className="text-sm text-muted-foreground flex items-center gap-2 mb-3">
                       <Calendar className="w-4 h-4" />
-                      {new Date(match.sdt).toLocaleDateString("en-IN", {
-                        day: "numeric",
-                        month: "short",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
+                      {match.dateTimeGMT && !isNaN(new Date(match.dateTimeGMT).getTime())
+                        ? new Date(match.dateTimeGMT).toLocaleDateString("en-IN", {
+                            day: "numeric",
+                            month: "short",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })
+                        : "Date TBA"}
                     </div>
                     <Button asChild size="sm" className="w-full">
                       <Link href={`/create-team/${match.id}`}>Create Team</Link>

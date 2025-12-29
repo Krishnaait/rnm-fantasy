@@ -198,12 +198,14 @@ export default function Home() {
                       </div>
                       <div className="text-sm text-muted-foreground flex items-center gap-2">
                         <Calendar className="w-4 h-4" />
-                        {new Date(match.sdt).toLocaleDateString("en-IN", {
-                          day: "numeric",
-                          month: "short",
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}
+                        {match.dateTimeGMT && !isNaN(new Date(match.dateTimeGMT).getTime())
+                          ? new Date(match.dateTimeGMT).toLocaleDateString("en-IN", {
+                              day: "numeric",
+                              month: "short",
+                              hour: "2-digit",
+                              minute: "2-digit",
+                            })
+                          : "Date TBA"}
                       </div>
                     </div>
                     <Button asChild className="w-full mt-4">

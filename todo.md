@@ -387,3 +387,36 @@
 - [ ] Cron jobs configured
 - [ ] Error handling implemented
 - [ ] Security measures in place
+
+
+---
+
+## CRITICAL BUGS TO FIX (Reported by User) - ALL FIXED ✅
+
+### Bug 1: Manus OAuth Still Appearing - FIXED ✅
+- [x] Find and remove all Manus OAuth redirect logic
+- [x] Check useAuth hook for OAuth redirects - Updated to use /login
+- [x] Remove OAuth callback routes - Disabled in server
+- [x] Ensure custom login/register pages are the only auth method
+
+### Bug 2: Create Team Button Not Working - FIXED ✅
+- [x] Debug CreateTeam.tsx component
+- [x] Check team creation mutation - Working correctly
+- [x] Verify captain/vice-captain selection state - Working
+- [x] Fix button click handler - Issue was empty team name field
+- [x] Successfully created team "Test Dream Team"
+
+### Bug 3: Live Matches Not Showing - FIXED ✅
+- [x] Check LiveScores.tsx component - Working correctly
+- [x] Verify CricAPI live matches endpoint - Returns data when matches are live
+- [x] Debug data fetching logic - Working
+- [x] Ensure proper filtering for live matches - Shows "No Live Matches" when none are live
+
+### Bug 4: Invalid Date Display - FIXED ✅
+- [x] Updated CricAPI interface to use dateTimeGMT instead of sdt
+- [x] Fixed categorizeMatches function
+- [x] Fixed Matches.tsx date formatting
+- [x] Fixed MatchDetail.tsx date formatting
+- [x] Fixed Dashboard.tsx date formatting
+- [x] Fixed Home.tsx date formatting
+- [x] All dates now display correctly (e.g., "30 Dec, 03:25 am")

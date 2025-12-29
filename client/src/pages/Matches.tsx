@@ -132,7 +132,7 @@ interface MatchCardProps {
     t2s?: string;
     series: string;
     matchType: string;
-    sdt: string;
+    dateTimeGMT: string;
   };
   status: "live" | "upcoming" | "completed";
 }
@@ -184,8 +184,8 @@ function MatchCard({ match, status }: MatchCardProps) {
           {status === "upcoming" && (
             <div className="text-sm text-muted-foreground flex items-center gap-2">
               <Calendar className="w-4 h-4" />
-              {match.sdt && !isNaN(new Date(match.sdt).getTime())
-                ? new Date(match.sdt).toLocaleDateString("en-IN", {
+              {match.dateTimeGMT && !isNaN(new Date(match.dateTimeGMT).getTime())
+                ? new Date(match.dateTimeGMT).toLocaleDateString("en-IN", {
                     day: "numeric",
                     month: "short",
                     hour: "2-digit",
