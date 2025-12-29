@@ -1,6 +1,6 @@
-import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { useAuth } from "@/_core/hooks/useAuth";
 import { 
   Trophy, 
   Users, 
@@ -9,33 +9,31 @@ import {
   Star, 
   ShieldCheck, 
   Smartphone,
-  TrendingUp,
-  CheckCircle2,
   Sparkles
 } from "lucide-react";
-import { useAuth } from "@/_core/hooks/useAuth";
+import { useLocation } from "wouter";
 
 export default function Home() {
-  const [, navigate] = useLocation();
-  const { user, isAuthenticated } = useAuth();
+  const [, setLocation] = useLocation();
+  const { isAuthenticated } = useAuth();
 
   const features = [
     {
-      title: "100% Free to Play",
-      description: "No entry fees, no real money. Just pure cricket fantasy fun for everyone.",
-      icon: <Trophy className="w-8 h-8 text-primary" />,
+      title: "Zero Entry Fee",
+      description: "Join any contest for free. No financial risk, just pure cricket passion.",
+      icon: <Trophy className="w-6 h-6 text-primary" />,
       image: "/feature-contests.png"
     },
     {
-      title: "Real-Time Live Scores",
-      description: "Watch your fantasy team's performance with live match updates every 30 seconds.",
-      icon: <Zap className="w-8 h-8 text-primary" />,
+      title: "Live Score Updates",
+      description: "Real-time match tracking and fantasy point calculations.",
+      icon: <Zap className="w-6 h-6 text-primary" />,
       image: "/feature-live-scores.png"
     },
     {
-      title: "Global Leaderboards",
-      description: "Compete with cricket fans across India and climb the global rankings.",
-      icon: <TrendingUp className="w-8 h-8 text-primary" />,
+      title: "Global Leaderboard",
+      description: "Compete with thousands of players and climb the rankings.",
+      icon: <Users className="w-6 h-6 text-primary" />,
       image: "/feature-leaderboard.png"
     }
   ];
@@ -43,7 +41,7 @@ export default function Home() {
   const steps = [
     {
       title: "Register Free",
-      description: "Create your free account in seconds and join the community.",
+      description: "Create your account in seconds and join our community.",
       image: "/how-to-play-step1.png"
     },
     {
@@ -90,7 +88,7 @@ export default function Home() {
               {isAuthenticated ? (
                 <Button 
                   size="lg" 
-                  onClick={() => navigate("/matches")}
+                  onClick={() => setLocation("/matches")}
                   className="gradient-primary text-lg px-8 py-6 h-auto"
                 >
                   Go to Dashboard <ArrowRight className="ml-2 w-5 h-5" />
@@ -99,7 +97,7 @@ export default function Home() {
                 <>
                   <Button 
                     size="lg" 
-                    onClick={() => navigate("/register")}
+                    onClick={() => setLocation("/register")}
                     className="gradient-primary text-lg px-8 py-6 h-auto"
                   >
                     Join Now Free <ArrowRight className="ml-2 w-5 h-5" />
@@ -107,7 +105,7 @@ export default function Home() {
                   <Button 
                     size="lg" 
                     variant="outline"
-                    onClick={() => navigate("/how-to-play")}
+                    onClick={() => setLocation("/how-to-play")}
                     className="text-lg px-8 py-6 h-auto border-primary/50 hover:bg-primary/10"
                   >
                     How to Play
@@ -251,12 +249,12 @@ export default function Home() {
             <Button 
               size="lg" 
               variant="secondary"
-              onClick={() => navigate("/register")}
+              onClick={() => setLocation("/register")}
               className="text-xl px-12 py-8 h-auto font-bold shadow-2xl hover:scale-105 transition-transform"
             >
               START PLAYING NOW
             </Button>
-          </div>
+          </CardContent>
         </Card>
       </section>
     </div>
