@@ -37,7 +37,7 @@ export default function Header() {
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <img src="/rnm-logo.png" alt="RNM Fantasy" className="h-12 w-auto" />
+          <img src="/rnm-logo-new.png" alt="RNM Fantasy" className="h-12 w-auto" />
         </Link>
 
         {/* Desktop Navigation */}

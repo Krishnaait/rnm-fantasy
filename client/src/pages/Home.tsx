@@ -86,13 +86,23 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               {isAuthenticated ? (
-                <Button 
-                  size="lg" 
-                  onClick={() => setLocation("/matches")}
-                  className="gradient-primary text-lg px-8 py-6 h-auto"
-                >
-                  Go to Dashboard <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
+                <div className="flex flex-col sm:flex-row gap-4 w-full">
+                  <Button 
+                    size="lg" 
+                    onClick={() => setLocation("/matches")}
+                    className="gradient-primary text-lg px-8 py-6 h-auto flex-1 sm:flex-none"
+                  >
+                    View Matches <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                  <Button 
+                    size="lg" 
+                    variant="outline"
+                    onClick={() => setLocation("/dashboard")}
+                    className="text-lg px-8 py-6 h-auto border-primary/50 hover:bg-primary/10 flex-1 sm:flex-none"
+                  >
+                    My Dashboard
+                  </Button>
+                </div>
               ) : (
                 <>
                   <Button 
@@ -240,19 +250,20 @@ export default function Home() {
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20" />
           <CardContent className="relative z-10 py-16 text-center space-y-8">
             <h2 className="text-4xl md:text-6xl font-black text-primary-foreground">
-              READY TO DOMINATE?
+              {isAuthenticated ? "READY FOR THE NEXT MATCH?" : "READY TO DOMINATE?"}
             </h2>
             <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto font-medium">
-              Join India's fastest-growing free fantasy cricket community today. 
-              Show off your skills and claim your spot on the leaderboard!
+              {isAuthenticated 
+                ? "Your team is waiting. Check out the latest matches and join new contests to climb the leaderboard!"
+                : "Join India's fastest-growing free fantasy cricket community today. Show off your skills and claim your spot on the leaderboard!"}
             </p>
             <Button 
               size="lg" 
               variant="secondary"
-              onClick={() => setLocation("/register")}
+              onClick={() => setLocation(isAuthenticated ? "/matches" : "/register")}
               className="text-xl px-12 py-8 h-auto font-bold shadow-2xl hover:scale-105 transition-transform"
             >
-              START PLAYING NOW
+              {isAuthenticated ? "VIEW UPCOMING MATCHES" : "START PLAYING NOW"}
             </Button>
           </CardContent>
         </Card>
