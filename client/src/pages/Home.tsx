@@ -127,19 +127,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Trust Badges Section */}
       <section className="py-12 border-y border-border bg-card/30">
         <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
             {[
-              { label: "Active Users", value: "50K+" },
-              { label: "Matches Covered", value: "1000+" },
-              { label: "Free Contests", value: "5000+" },
-              { label: "User Rating", value: "4.8/5" }
-            ].map((stat, i) => (
-              <div key={i} className="text-center">
-                <div className="text-3xl font-bold text-primary mb-1">{stat.value}</div>
-                <div className="text-sm text-muted-foreground uppercase tracking-wider">{stat.label}</div>
+              { label: "100% Free to Play", icon: <Trophy className="w-5 h-5" /> },
+              { label: "Secure Platform", icon: <ShieldCheck className="w-5 h-5" /> },
+              { label: "Skill Based", icon: <Star className="w-5 h-5" /> },
+              { label: "24/7 Support", icon: <Smartphone className="w-5 h-5" /> }
+            ].map((badge, i) => (
+              <div key={i} className="flex items-center gap-3 px-6 py-3 rounded-full bg-background border border-border shadow-sm hover:shadow-md transition-shadow">
+                <div className="text-primary">
+                  {badge.icon}
+                </div>
+                <span className="font-bold text-sm uppercase tracking-wide whitespace-nowrap">
+                  {badge.label}
+                </span>
               </div>
             ))}
           </div>
