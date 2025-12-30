@@ -4,25 +4,25 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --primary: oklch(0.75 0.2 145);
-  --primary-foreground: oklch(0.1 0.015 250);
-  --background: oklch(0.1 0.015 250);
-  --foreground: oklch(0.985 0.005 250);
-  --card: oklch(0.12 0.015 250);
-  --card-foreground: oklch(0.985 0.005 250);
-  --popover: oklch(0.12 0.015 250);
-  --popover-foreground: oklch(0.985 0.005 250);
-  --secondary: oklch(0.2 0.015 250);
-  --secondary-foreground: oklch(0.985 0.005 250);
-  --muted: oklch(0.15 0.015 250);
-  --muted-foreground: oklch(0.65 0.01 250);
-  --accent: oklch(0.75 0.2 145);
-  --accent-foreground: oklch(0.1 0.015 250);
+  --primary: oklch(0.65 0.2 145);
+  --primary-foreground: oklch(0.985 0.005 250);
+  --background: oklch(0.985 0.005 250);
+  --foreground: oklch(0.1 0.015 250);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.1 0.015 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.1 0.015 250);
+  --secondary: oklch(0.95 0.01 250);
+  --secondary-foreground: oklch(0.1 0.015 250);
+  --muted: oklch(0.95 0.01 250);
+  --muted-foreground: oklch(0.45 0.01 250);
+  --accent: oklch(0.65 0.2 145);
+  --accent-foreground: oklch(0.985 0.005 250);
   --destructive: oklch(0.55 0.2 25);
   --destructive-foreground: oklch(0.985 0.005 250);
-  --border: oklch(0.2 0.015 250);
-  --input: oklch(0.2 0.015 250);
-  --ring: oklch(0.75 0.2 145);
+  --border: oklch(0.9 0.01 250);
+  --input: oklch(0.9 0.01 250);
+  --ring: oklch(0.65 0.2 145);
   --radius: 0.75rem;
 
   /* Tailwind v4 color mappings */
@@ -95,7 +95,7 @@
   }
   .badge-live {
     background-color: color-mix(in srgb, #ef4444 20%, transparent);
-    color: #f87171;
+    color: #ef4444;
     border: 1px solid color-mix(in srgb, #ef4444 30%, transparent);
     @apply px-2 py-0.5 rounded-full text-xs font-medium;
   }
