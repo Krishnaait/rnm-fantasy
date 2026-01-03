@@ -206,47 +206,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-24 container">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="space-y-8">
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-              What Our <span className="text-primary">Players Say</span>
-            </h2>
-            <div className="space-y-6">
-              {[
-                {
-                  name: "Rahul Sharma",
-                  role: "Cricket Enthusiast",
-                  text: "The best part about RNM Fantasy is that it's completely free. I can test my cricket knowledge without worrying about losing money."
-                },
-                {
-                  name: "Priya Patel",
-                  role: "Fantasy Pro",
-                  text: "The live score updates are incredibly fast. It makes watching the match so much more exciting when you see your fantasy points climbing!"
-                }
-              ].map((t, i) => (
-                <Card key={i} className="bg-card/50 border-primary/10">
-                  <CardContent className="p-6 space-y-4">
-                    <div className="flex gap-1">
-                      {[1, 2, 3, 4, 5].map(s => <Star key={s} className="w-4 h-4 fill-primary text-primary" />)}
-                    </div>
-                    <p className="italic text-muted-foreground">"{t.text}"</p>
-                    <div className="font-bold">{t.name} <span className="text-sm font-normal text-muted-foreground ml-2">— {t.role}</span></div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-          <div className="relative">
-            <img 
-              src="/testimonials-section.png" 
-              alt="Community" 
-              className="rounded-2xl shadow-2xl shadow-primary/20 border border-primary/10"
-            />
-          </div>
-        </div>
-      </section>
+
 
       {/* Final CTA */}
       <section className="py-24 container">
