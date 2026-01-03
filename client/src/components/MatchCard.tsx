@@ -8,6 +8,8 @@ interface MatchCardProps {
     id: string;
     t1: string;
     t2: string;
+    t1img?: string;
+    t2img?: string;
     t1s?: string;
     t2s?: string;
     series: string;
@@ -45,19 +47,38 @@ export function MatchCard({ match, status }: MatchCardProps) {
         <CardTitle className="text-base mt-2 line-clamp-1">{match.series}</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-3">
+        <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <span className="font-medium text-sm truncate max-w-[120px]">{match.t1}</span>
+            <div className="flex items-center gap-3">
+              {match.t1img ? (
+                <img src={match.t1img} alt={match.t1} className="w-8 h-8 object-contain rounded-full bg-muted p-1" />
+              ) : (
+                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-[10px] font-bold text-primary">
+                  {match.t1.substring(0, 2).toUpperCase()}
+                </div>
+              )}
+              <span className="font-semibold text-sm truncate max-w-[100px]">{match.t1}</span>
+            </div>
             {status !== "upcoming" ? (
-              <span className="text-primary font-bold">{match.t1s || "-"}</span>
+              <span className="text-primary font-bold text-lg">{match.t1s || "0/0"}</span>
             ) : (
-              <span className="text-muted-foreground">vs</span>
+              <span className="text-muted-foreground font-medium">vs</span>
             )}
           </div>
+
           <div className="flex items-center justify-between">
-            <span className="font-medium text-sm truncate max-w-[120px]">{match.t2}</span>
+            <div className="flex items-center gap-3">
+              {match.t2img ? (
+                <img src={match.t2img} alt={match.t2} className="w-8 h-8 object-contain rounded-full bg-muted p-1" />
+              ) : (
+                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-[10px] font-bold text-primary">
+                  {match.t2.substring(0, 2).toUpperCase()}
+                </div>
+              )}
+              <span className="font-semibold text-sm truncate max-w-[100px]">{match.t2}</span>
+            </div>
             {status !== "upcoming" && (
-              <span className="text-primary font-bold">{match.t2s || "-"}</span>
+              <span className="text-primary font-bold text-lg">{match.t2s || "0/0"}</span>
             )}
           </div>
           

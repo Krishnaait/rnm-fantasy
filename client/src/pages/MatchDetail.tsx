@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link, useParams } from "wouter";
-import { Calendar, Users, Trophy, ArrowLeft, Loader2, AlertCircle } from "lucide-react";
+import { Calendar, Users, Trophy, ArrowLeft, AlertCircle, Info, Layout } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getLoginUrl } from "@/const";
 
@@ -129,17 +129,79 @@ export default function MatchDetail() {
               )}
             </div>
           </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-3 items-center gap-4 py-4">
-              <div className="text-center">
-                <div className="text-xl font-bold">{match.t1}</div>
-                {match.t1s && <div className="text-2xl font-bold text-primary mt-2">{match.t1s}</div>}
+          <CardContent className="p-0">
+            <div className="bg-muted/30 p-6 border-y border-border">
+              <div className="grid grid-cols-3 items-center gap-4">
+                <div className="flex flex-col items-center text-center gap-3">
+                  {match.t1img ? (
+                    <img src={match.t1img} alt={match.t1} className="w-16 h-16 object-contain rounded-full bg-background p-2 shadow-sm" />
+                  ) : (
+                    <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-xl font-bold text-primary">
+                      {match.t1.substring(0, 2).toUpperCase()}
+                    </div>
+                  )}
+                  <div className="text-lg font-bold">{match.t1}</div>
+                  {match.t1s && <div className="text-3xl font-black text-primary">{match.t1s}</div>}
+                </div>
+                
+                <div className="flex flex-col items-center justify-center gap-2">
+                  <div className="text-sm font-bold text-muted-foreground bg-background px-3 py-1 rounded-full border border-border">VS</div>
+                  {match.status && (
+                    <div className="text-xs font-medium text-center text-muted-foreground mt-2 max-w-[120px]">
+                      {match.status}
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex flex-col items-center text-center gap-3">
+                  {match.t2img ? (
+                    <img src={match.t2img} alt={match.t2} className="w-16 h-16 object-contain rounded-full bg-background p-2 shadow-sm" />
+                  ) : (
+                    <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-xl font-bold text-primary">
+                      {match.t2.substring(0, 2).toUpperCase()}
+                    </div>
+                  )}
+                  <div className="text-lg font-bold">{match.t2}</div>
+                  {match.t2s && <div className="text-3xl font-black text-primary">{match.t2s}</div>}
+                </div>
               </div>
-              <div className="text-center text-2xl font-bold text-muted-foreground">VS</div>
-              <div className="text-center">
-                <div className="text-xl font-bold">{match.t2}</div>
-                {match.t2s && <div className="text-2xl font-bold text-primary mt-2">{match.t2s}</div>}
-              </div>
+            </div>
+            
+            {/* Quick Actions Container */}
+            <div className="p-4 flex flex-wrap justify-center gap-4 bg-background">
+              {match.ms === "fixture" ? (
+                <div className="w-full max-w-md p-4 rounded-xl border-2 border-primary/20 bg-primary/5 flex flex-col items-center gap-3 text-center">
+                  <div className="p-2 rounded-full bg-primary/10">
+                    <Users className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg">Create Your Dream Team</h4>
+                    <p className="text-sm text-muted-foreground">Select 11 players and compete for the top spot!</p>
+                  </div>
+                  {isAuthenticated ? (
+                    <Button asChild size="lg" className="w-full gradient-primary shadow-lg shadow-primary/20">
+                      <Link href={`/create-team/${id}`}>Create Team Now</Link>
+                    </Button>
+                  ) : (
+                    <Button asChild size="lg" className="w-full gradient-primary shadow-lg shadow-primary/20">
+                      <a href={getLoginUrl()}>Sign In to Play</a>
+                    </Button>
+                  )}
+                </div>
+              ) : (
+                <div className="w-full max-w-md p-4 rounded-xl border-2 border-muted bg-muted/5 flex flex-col items-center gap-3 text-center">
+                  <div className="p-2 rounded-full bg-muted">
+                    <Layout className="w-6 h-6 text-muted-foreground" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg">Match Scorecard</h4>
+                    <p className="text-sm text-muted-foreground">View detailed match results and player performances.</p>
+                  </div>
+                  <Button variant="outline" size="lg" className="w-full" disabled>
+                    Full Scorecard Coming Soon
+                  </Button>
+                </div>
+              )}
             </div>
           </CardContent>
         </Card>
