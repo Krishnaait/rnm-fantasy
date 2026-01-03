@@ -37,7 +37,7 @@ export default function Header() {
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <img src="/rnm-logo-new.png" alt="DraftZonePro" className="h-12 w-auto" />
+          <img src="/rnm-logo-new.png" alt="DraftZonePro" className="h-12 w-auto object-contain brightness-100 contrast-125" />
         </Link>
 
         {/* Desktop Navigation */}

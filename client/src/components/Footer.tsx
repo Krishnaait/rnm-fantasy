@@ -31,7 +31,7 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2">
-              <img src="/rnm-logo-new.png" alt="DraftZonePro" className="h-12 w-auto" />
+              <img src="/rnm-logo-new.png" alt="DraftZonePro" className="h-12 w-auto object-contain brightness-100 contrast-125" />
             </Link>
             <p className="text-sm text-muted-foreground">
               India's premier free-to-play fantasy cricket platform. 

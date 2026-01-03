@@ -44,7 +44,7 @@ export default function About() {
               high entry fees and financial risks.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              In 2025, we launched DraftZonePro with a simple promise: 100% Free to Play, 
+              In 2026, we launched DraftZonePro with a simple promise: 100% Free to Play, 
               Forever. Today, we are one of India's fastest-growing free fantasy platforms, 
               connecting thousands of fans through the sport they love.
             </p>
