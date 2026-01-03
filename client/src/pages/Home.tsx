@@ -9,9 +9,14 @@ import {
   Star, 
   ShieldCheck, 
   Smartphone,
-  Sparkles
+  Sparkles,
+  Calendar,
+  CheckCircle
 } from "lucide-react";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
+import { trpc } from "@/lib/trpc";
+import { MatchCard } from "@/components/MatchCard";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Home() {
   const [, setLocation] = useLocation();
@@ -55,6 +60,8 @@ export default function Home() {
       image: "/how-to-play-step3.png"
     }
   ];
+
+  const { data: matchData, isLoading } = trpc.matches.list.useQuery();
 
   return (
     <div className="min-h-screen bg-background">
@@ -148,6 +155,92 @@ export default function Home() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* Matches Preview Section */}
+      <section className="py-24 container">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+          <div className="space-y-2">
+            <h2 className="text-3xl md:text-5xl font-bold">Featured Matches</h2>
+            <p className="text-muted-foreground text-lg">Join the action in these top cricket matches.</p>
+          </div>
+          <Button asChild variant="outline" size="lg" className="group">
+            <Link href="/matches">
+              View All Matches <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </Button>
+        </div>
+
+        {isLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3].map((i) => (
+              <Card key={i} className="h-64">
+                <CardContent className="p-6 space-y-4">
+                  <Skeleton className="h-4 w-24" />
+                  <Skeleton className="h-8 w-full" />
+                  <div className="space-y-2">
+                    <Skeleton className="h-4 w-3/4" />
+                    <Skeleton className="h-4 w-1/2" />
+                  </div>
+                  <Skeleton className="h-10 w-full mt-4" />
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        ) : (
+          <div className="space-y-16">
+            {/* Live Matches */}
+            {matchData?.live && matchData.live.length > 0 && (
+              <div className="space-y-6">
+                <div className="flex items-center gap-2 text-red-500 font-bold uppercase tracking-wider">
+                  <Zap className="w-5 h-5 animate-pulse-live" />
+                  <span>Live Now</span>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {matchData.live.slice(0, 3).map((match) => (
+                    <MatchCard key={match.id} match={match} status="live" />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Upcoming Matches */}
+            <div className="space-y-6">
+              <div className="flex items-center gap-2 text-primary font-bold uppercase tracking-wider">
+                <Calendar className="w-5 h-5" />
+                <span>Upcoming Matches</span>
+              </div>
+              {matchData?.upcoming && matchData.upcoming.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {matchData.upcoming.slice(0, 6).map((match) => (
+                    <MatchCard key={match.id} match={match} status="upcoming" />
+                  ))}
+                </div>
+              ) : (
+                <Card className="bg-muted/30 border-dashed">
+                  <CardContent className="py-12 text-center text-muted-foreground">
+                    No upcoming matches scheduled at the moment.
+                  </CardContent>
+                </Card>
+              )}
+            </div>
+
+            {/* Completed Matches */}
+            {matchData?.completed && matchData.completed.length > 0 && (
+              <div className="space-y-6">
+                <div className="flex items-center gap-2 text-muted-foreground font-bold uppercase tracking-wider">
+                  <CheckCircle className="w-5 h-5" />
+                  <span>Recently Completed</span>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {matchData.completed.slice(0, 3).map((match) => (
+                    <MatchCard key={match.id} match={match} status="completed" />
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </section>
 
       {/* Features Section */}
