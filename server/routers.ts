@@ -261,22 +261,9 @@ export const appRouter = router({
         return await getContests(input?.matchId);
       }),
 
-    // Sync contest status with match status
-    sync: publicProcedure
-      .input(z.object({ 
-        matchId: z.string(),
-        status: z.enum(["upcoming", "live", "completed"])
-      }))
-      .mutation(async ({ input }) => {
-        return await syncContests(input.matchId, input.status);
-      }),
 
-    // Seed contests for a match
-    seed: publicProcedure
-      .input(z.object({ matchId: z.string() }))
-      .mutation(async ({ input }) => {
-        return await seedContests(input.matchId);
-      }),
+
+
 
     // Get contest by ID
     getById: publicProcedure
