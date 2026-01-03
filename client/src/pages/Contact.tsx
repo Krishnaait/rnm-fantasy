@@ -32,7 +32,7 @@ export default function Contact() {
     {
       icon: Mail,
       title: "Email",
-      value: "support@rnmfantasy.com",
+      value: "support@draftzonepro.com",
       description: "Send us an email anytime",
     },
     {
@@ -75,7 +75,7 @@ export default function Contact() {
               <div className="space-y-6">
                 <h2 className="text-2xl font-bold">Get in Touch</h2>
                 <p className="text-muted-foreground">
-                  We're here to help with any questions about RNM Fantasy. 
+                  We're here to help with any questions about DraftZonePro. 
                   Reach out to us through any of the following channels.
                 </p>
                 

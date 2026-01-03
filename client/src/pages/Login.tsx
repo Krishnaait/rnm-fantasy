@@ -59,7 +59,7 @@ export default function Login() {
             </div>
             <CardTitle className="text-2xl font-bold text-white">Welcome Back</CardTitle>
             <CardDescription className="text-gray-400">
-              Sign in to your RNM Fantasy account
+              Sign in to your DraftZonePro account
             </CardDescription>
           </CardHeader>
           

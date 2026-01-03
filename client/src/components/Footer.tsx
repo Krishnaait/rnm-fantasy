@@ -31,7 +31,7 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2">
-              <img src="/rnm-logo-new.png" alt="RNM Fantasy" className="h-12 w-auto" />
+              <img src="/rnm-logo-new.png" alt="DraftZonePro" className="h-12 w-auto" />
             </Link>
             <p className="text-sm text-muted-foreground">
               India's premier free-to-play fantasy cricket platform. 
@@ -44,7 +44,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 flex-shrink-0" />
-                <span>support@rnmfantasy.com</span>
+                <span>support@draftzonepro.com</span>
               </div>
             </div>
           </div>
@@ -105,7 +105,7 @@ export default function Footer() {
         <div className="border-t border-border mt-8 pt-8 mb-6">
           <div className="bg-muted/30 rounded-lg p-4 mb-6">
             <p className="text-xs text-muted-foreground leading-relaxed">
-              <strong>Legal Disclaimer:</strong> RNM Fantasy is a free-to-play fantasy sports platform. This platform is for entertainment purposes only and does not involve real money, gambling, or any form of wagering. Users participate in fantasy cricket contests based on skill and knowledge of the sport. All contests are completely free to join with no entry fees or monetary prizes. By using this platform, you agree to our Terms of Service, Privacy Policy, and Fair Play Policy. Please read our Responsible Gaming guidelines for more information.
+              <strong>Legal Disclaimer:</strong> DraftZonePro is a free-to-play fantasy sports platform. This platform is for entertainment purposes only and does not involve real money, gambling, or any form of wagering. Users participate in fantasy cricket contests based on skill and knowledge of the sport. All contests are completely free to join with no entry fees or monetary prizes. By using this platform, you agree to our Terms of Service, Privacy Policy, and Fair Play Policy. Please read our Responsible Gaming guidelines for more information.
             </p>
           </div>
         </div>

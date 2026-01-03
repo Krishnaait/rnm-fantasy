@@ -16,7 +16,7 @@ export default function FairPlay() {
     {
       icon: Scale,
       title: "Skill-Based Competition",
-      description: "Success on RNM Fantasy is determined by cricket knowledge and strategic thinking, not luck or manipulation."
+      description: "Success on DraftZonePro is determined by cricket knowledge and strategic thinking, not luck or manipulation."
     },
     {
       icon: CheckCircle,
@@ -64,7 +64,7 @@ export default function FairPlay() {
               <CardContent className="py-8">
                 <h2 className="text-2xl font-bold mb-4">Our Commitment to Fair Play</h2>
                 <p className="text-muted-foreground mb-4">
-                  At RNM Fantasy, we believe that fair play is the foundation of an enjoyable gaming experience. 
+                  At DraftZonePro, we believe that fair play is the foundation of an enjoyable gaming experience. 
                   We are committed to providing a platform where every user can compete on equal footing, 
                   and where skill and knowledge are the only factors that determine success.
                 </p>
@@ -115,7 +115,7 @@ export default function FairPlay() {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground mb-6">
-                  The following activities are strictly prohibited on RNM Fantasy. Violation of these rules 
+                  The following activities are strictly prohibited on DraftZonePro. Violation of these rules 
                   may result in immediate account suspension or permanent ban:
                 </p>
                 <ul className="space-y-3">

@@ -43,7 +43,7 @@ export function useAuth(options?: UseAuthOptions) {
 
   const state = useMemo(() => {
     localStorage.setItem(
-      "rnm-fantasy-user-info",
+      "draftzonepro-user-info",
       JSON.stringify(meQuery.data)
     );
     return {

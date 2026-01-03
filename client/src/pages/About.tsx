@@ -19,7 +19,7 @@ export default function About() {
       <section className="py-20 bg-card/30 border-b border-border">
         <div className="container text-center space-y-6">
           <h1 className="text-4xl md:text-6xl font-extrabold">
-            About <span className="text-primary">RNM Fantasy</span>
+            About <span className="text-primary">DraftZonePro</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             We are on a mission to democratize fantasy cricket in India by providing 
@@ -38,13 +38,13 @@ export default function About() {
             </div>
             <h2 className="text-3xl md:text-4xl font-bold">Born from Passion for Cricket</h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              RNM Fantasy was founded by a group of cricket enthusiasts who believed that 
+              DraftZonePro was founded by a group of cricket enthusiasts who believed that 
               fantasy sports should be about skill and passion, not just money. We saw 
               millions of fans being excluded from the fantasy sports revolution due to 
               high entry fees and financial risks.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              In 2025, we launched RNM Fantasy with a simple promise: 100% Free to Play, 
+              In 2025, we launched DraftZonePro with a simple promise: 100% Free to Play, 
               Forever. Today, we are one of India's fastest-growing free fantasy platforms, 
               connecting thousands of fans through the sport they love.
             </p>
@@ -65,7 +65,7 @@ export default function About() {
           <div className="text-center mb-16 space-y-4">
             <h2 className="text-3xl md:text-5xl font-bold">Our Core Values</h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              These principles guide everything we do at RNM Fantasy.
+              These principles guide everything we do at DraftZonePro.
             </p>
           </div>
           
@@ -151,7 +151,7 @@ export default function About() {
               <Award className="w-16 h-16 text-primary mx-auto" />
               <h2 className="text-3xl font-bold">RNM PARKING AND SECURITY SOLUTIONS PRIVATE LIMITED</h2>
               <p className="text-muted-foreground">
-                RNM Fantasy is a flagship product of RNM Parking and Security Solutions Private Limited, 
+                DraftZonePro is a flagship product of RNM Parking and Security Solutions Private Limited, 
                 a company dedicated to creating innovative digital solutions for the Indian market.
               </p>
               <div className="pt-6 border-t border-border grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">

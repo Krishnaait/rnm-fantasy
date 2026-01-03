@@ -26,20 +26,20 @@ export default function Terms() {
               <CardContent className="py-8 prose prose-invert max-w-none">
                 <h2 className="text-2xl font-bold mb-4">1. Acceptance of Terms</h2>
                 <p className="text-muted-foreground mb-6">
-                  By accessing and using RNM Fantasy ("the Platform"), you accept and agree to be bound by 
+                  By accessing and using DraftZonePro ("the Platform"), you accept and agree to be bound by 
                   these Terms and Conditions. If you do not agree to these terms, please do not use the Platform.
                 </p>
 
                 <h2 className="text-2xl font-bold mb-4">2. Platform Description</h2>
                 <p className="text-muted-foreground mb-6">
-                  RNM Fantasy is a free-to-play fantasy cricket platform operated by RNM PARKING AND SECURITY 
+                  DraftZonePro is a free-to-play fantasy cricket platform operated by RNM PARKING AND SECURITY 
                   SOLUTIONS PRIVATE LIMITED. The Platform allows users to create virtual cricket teams, 
                   participate in contests, and compete for rankings based on real cricket match performances.
                 </p>
 
                 <h2 className="text-2xl font-bold mb-4">3. Free-to-Play Nature</h2>
                 <p className="text-muted-foreground mb-4">
-                  RNM Fantasy is entirely free to play. Users acknowledge and agree that:
+                  DraftZonePro is entirely free to play. Users acknowledge and agree that:
                 </p>
                 <ul className="list-disc pl-6 text-muted-foreground mb-6 space-y-2">
                   <li>There are no entry fees for any contests</li>
@@ -51,7 +51,7 @@ export default function Terms() {
 
                 <h2 className="text-2xl font-bold mb-4">4. Eligibility</h2>
                 <p className="text-muted-foreground mb-4">
-                  To use RNM Fantasy, you must:
+                  To use DraftZonePro, you must:
                 </p>
                 <ul className="list-disc pl-6 text-muted-foreground mb-6 space-y-2">
                   <li>Be at least 18 years of age</li>
@@ -134,7 +134,7 @@ export default function Terms() {
                 </p>
                 <p className="text-muted-foreground">
                   <strong>RNM PARKING AND SECURITY SOLUTIONS PRIVATE LIMITED</strong><br />
-                  Email: support@rnmfantasy.com<br />
+                  Email: support@draftzonepro.com<br />
                   Address: S/O. KALU LAL MEENA JHUGGI.NO.RC-82-A, J.J.BANDU CAMP SEC-B PKT- 5 and 6,
                   VASANT KUNJ, New Delhi, South Delhi, Delhi, 110070
                 </p>

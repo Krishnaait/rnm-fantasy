@@ -57,7 +57,7 @@ export default function Register() {
             </div>
             <CardTitle className="text-2xl font-bold text-white">Create Account</CardTitle>
             <CardDescription className="text-gray-400">
-              Join RNM Fantasy and start playing for free
+              Join DraftZonePro and start playing for free
             </CardDescription>
           </CardHeader>
           

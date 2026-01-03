@@ -11,7 +11,7 @@ export default function ResponsibleGaming() {
     {
       icon: Heart,
       title: "Play for Fun",
-      description: "Remember that RNM Fantasy is meant for entertainment. Enjoy the game without letting it affect your daily life."
+      description: "Remember that DraftZonePro is meant for entertainment. Enjoy the game without letting it affect your daily life."
     },
     {
       icon: Users,
@@ -64,7 +64,7 @@ export default function ResponsibleGaming() {
               <CardContent className="py-8">
                 <h2 className="text-2xl font-bold mb-4">Our Commitment to Responsible Gaming</h2>
                 <p className="text-muted-foreground mb-4">
-                  At RNM Fantasy, we are committed to promoting responsible gaming practices. While our 
+                  At DraftZonePro, we are committed to promoting responsible gaming practices. While our 
                   platform is 100% free to play with no real money involved, we understand that any form 
                   of gaming should be enjoyed in moderation.
                 </p>
@@ -74,7 +74,7 @@ export default function ResponsibleGaming() {
                 </p>
                 <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
                   <p className="text-primary font-medium">
-                    Remember: RNM Fantasy is completely free to play. There are no entry fees, no real 
+                    Remember: DraftZonePro is completely free to play. There are no entry fees, no real 
                     money prizes, and no financial risk involved.
                   </p>
                 </div>
@@ -145,7 +145,7 @@ export default function ResponsibleGaming() {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground mb-4">
-                  While RNM Fantasy is free to play, it's important to recognize if gaming is becoming 
+                  While DraftZonePro is free to play, it's important to recognize if gaming is becoming 
                   problematic. Watch for these signs:
                 </p>
                 <ul className="space-y-3 text-muted-foreground">
@@ -188,7 +188,7 @@ export default function ResponsibleGaming() {
                   You can request to have your account temporarily or permanently deactivated.
                 </p>
                 <p className="text-muted-foreground mb-4">
-                  To request self-exclusion, please contact our support team at support@rnmfantasy.com 
+                  To request self-exclusion, please contact our support team at support@draftzonepro.com 
                   with your request. We will process your request within 24 hours.
                 </p>
                 <p className="text-muted-foreground">
@@ -212,7 +212,7 @@ export default function ResponsibleGaming() {
                   for help. Our support team is here to assist you.
                 </p>
                 <div className="space-y-2 text-muted-foreground">
-                  <p><strong>Email:</strong> support@rnmfantasy.com</p>
+                  <p><strong>Email:</strong> support@draftzonepro.com</p>
                   <p className="text-sm">
                     You can also seek help from professional counseling services in your area.
                   </p>

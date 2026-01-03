@@ -14,12 +14,12 @@ export default function FAQ() {
       icon: <HelpCircle className="w-5 h-5 text-primary" />,
       questions: [
         {
-          q: "What is RNM Fantasy?",
-          a: "RNM Fantasy is India's premier free-to-play fantasy cricket platform. It allows cricket fans to use their knowledge and skills to create dream teams and compete in various contests without any real money involved."
+          q: "What is DraftZonePro?",
+          a: "DraftZonePro is India's premier free-to-play fantasy cricket platform. It allows cricket fans to use their knowledge and skills to create dream teams and compete in various contests without any real money involved."
         },
         {
           q: "Is it really free to play?",
-          a: "Yes, 100%! RNM Fantasy is strictly for entertainment purposes. There are no entry fees, no hidden charges, and no real money prizes. It's all about the passion for cricket and bragging rights."
+          a: "Yes, 100%! DraftZonePro is strictly for entertainment purposes. There are no entry fees, no hidden charges, and no real money prizes. It's all about the passion for cricket and bragging rights."
         },
         {
           q: "How do I get started?",
@@ -70,7 +70,7 @@ export default function FAQ() {
             Frequently Asked <span className="text-primary">Questions</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Everything you need to know about RNM Fantasy. Can't find what you're 
+            Everything you need to know about DraftZonePro. Can't find what you're 
             looking for? Reach out to our support team.
           </p>
         </div>

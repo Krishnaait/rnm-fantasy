@@ -1,7 +1,7 @@
-# RNM Fantasy - Implementation To-Do List
+# DraftZonePro - Implementation To-Do List
 ## Based on PDF API Documentation (Adapted for Vite + React + tRPC)
 
-**Project**: RNM Fantasy Cricket Platform  
+**Project**: DraftZonePro Cricket Platform  
 **Stack**: Vite + React + TypeScript + tRPC + Drizzle ORM + MySQL  
 **API**: CricAPI (https://api.cricapi.com/v1)
 

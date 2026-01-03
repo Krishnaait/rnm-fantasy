@@ -27,7 +27,7 @@ export default function Privacy() {
                 <h2 className="text-2xl font-bold mb-4">1. Introduction</h2>
                 <p className="text-muted-foreground mb-6">
                   RNM PARKING AND SECURITY SOLUTIONS PRIVATE LIMITED ("we", "us", or "our") operates 
-                  RNM Fantasy (the "Platform"). This Privacy Policy explains how we collect, use, disclose, 
+                  DraftZonePro (the "Platform"). This Privacy Policy explains how we collect, use, disclose, 
                   and safeguard your information when you use our Platform.
                 </p>
 
@@ -133,7 +133,7 @@ export default function Privacy() {
                 </p>
                 <p className="text-muted-foreground">
                   <strong>RNM PARKING AND SECURITY SOLUTIONS PRIVATE LIMITED</strong><br />
-                  Email: support@rnmfantasy.com<br />
+                  Email: support@draftzonepro.com<br />
                   Address: S/O. KALU LAL MEENA JHUGGI.NO.RC-82-A, J.J.BANDU CAMP SEC-B PKT- 5 and 6,
                   VASANT KUNJ, New Delhi, South Delhi, Delhi, 110070
                 </p>

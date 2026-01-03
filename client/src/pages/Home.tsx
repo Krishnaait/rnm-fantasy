@@ -246,7 +246,7 @@ export default function Home() {
       {/* Features Section */}
       <section className="py-24 container">
         <div className="text-center mb-16 space-y-4">
-          <h2 className="text-3xl md:text-5xl font-bold">Why Choose RNM Fantasy?</h2>
+          <h2 className="text-3xl md:text-5xl font-bold">Why Choose DraftZonePro?</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             We provide the most authentic fantasy cricket experience with zero entry fees.
           </p>
