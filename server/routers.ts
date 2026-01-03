@@ -13,7 +13,7 @@ import {
   joinContest, getUserContestEntries, getContestEntries, getContestLeaderboard,
   hasUserJoinedContest, updateEntryPoints,
   createUser, getUserByEmail, verifyUserCredentials, getUserById,
-  seedContests
+  seedContests, syncContests
 } from "./db";
 import { TRPCError } from "@trpc/server";
 import { SignJWT } from "jose";
@@ -254,7 +254,28 @@ export const appRouter = router({
     list: publicProcedure
       .input(z.object({ matchId: z.string().optional() }).optional())
       .query(async ({ input }) => {
+        if (input?.matchId) {
+          // Auto-seed contests if they don't exist
+          await seedContests(input.matchId);
+        }
         return await getContests(input?.matchId);
+      }),
+
+    // Sync contest status with match status
+    sync: publicProcedure
+      .input(z.object({ 
+        matchId: z.string(),
+        status: z.enum(["upcoming", "live", "completed"])
+      }))
+      .mutation(async ({ input }) => {
+        return await syncContests(input.matchId, input.status);
+      }),
+
+    // Seed contests for a match
+    seed: publicProcedure
+      .input(z.object({ matchId: z.string() }))
+      .mutation(async ({ input }) => {
+        return await seedContests(input.matchId);
       }),
 
     // Get contest by ID

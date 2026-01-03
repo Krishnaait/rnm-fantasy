@@ -258,6 +258,21 @@ export async function seedContests(matchId: string): Promise<boolean> {
   }
 }
 
+export async function syncContests(matchId: string, status: "upcoming" | "live" | "completed"): Promise<boolean> {
+  const db = await getDb();
+  if (!db) return false;
+
+  try {
+    await db.update(contests)
+      .set({ status })
+      .where(eq(contests.matchId, matchId));
+    return true;
+  } catch (error) {
+    console.error("[Database] Failed to sync contests:", error);
+    return false;
+  }
+}
+
 export async function getContestById(contestId: number): Promise<Contest | null> {
   const db = await getDb();
   if (!db) return null;
